@@ -61,7 +61,6 @@
         android:id="@+id/toggleButtonGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ToggleButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
@@ -80,6 +79,7 @@
             android:textSize="20sp"
             app:icon="@drawable/baseline_play_circle_filled_24"
             app:iconSize = "32dp"
+            app:iconTint="?attr/colorOnSecondaryContainer"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -94,6 +94,7 @@
             android:textSize="20sp"
             app:icon="@drawable/baseline_stop_circle_24"
             app:iconSize = "32dp"
+            app:iconTint="?attr/colorOnSecondaryContainer"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
