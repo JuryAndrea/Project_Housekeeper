@@ -1,4 +1,4 @@
-package com.example.stepappv3;
+package com.example.stepappv4;
 
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.stepappv4.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,7 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 
-import com.example.stepappv3.databinding.ActivityMainBinding;
+import com.example.stepappv4.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

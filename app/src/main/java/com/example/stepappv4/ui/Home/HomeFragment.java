@@ -1,6 +1,8 @@
-package com.example.stepappv3.ui.home;
+package com.example.stepappv4.ui.Home;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,8 +20,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.stepappv3.R;
-import com.example.stepappv3.databinding.FragmentHomeBinding;
+import com.example.stepappv4.R;
+import com.example.stepappv4.StepAppOpenHelper;
+import com.example.stepappv4.databinding.FragmentHomeBinding;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -38,16 +41,14 @@ public class HomeFragment extends Fragment {
 
     private MaterialButtonToggleGroup toggleButtonGroup;
 
-    // TODO 1: Create an object from Sensor class, to be used for Acc. sensor
     private Sensor accSensor;
 
-    // TODO 2: Create an object from SensorManager class
     private SensorManager sensorManager;
 
     private StepCounterListener sensorListener;
 
-    // TODO 17.1 (YOUR TURN): Create an object from Sensor class,  to be used for STEP_DETECTOR sensor
     private Sensor stepDetectorSensor;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -65,13 +66,15 @@ public class HomeFragment extends Fragment {
         progressBar.setMax(50);
         progressBar.setProgress(0);
 
-        // TODO 3: Get an instance of sensor manager
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        // TODO 4: Assign sensor object to ACC. sensor
         accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
-        // TODO 17.2 (YOUR TURN): Assign sensor object to STEP_DETECTOR sensor
         stepDetectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+
+        // TODO 6.1: Instantiate our StepAppOpenHelper class
+        StepAppOpenHelper databaseOpenHelper = new StepAppOpenHelper(this.getContext());
+        // TODO 6.2: Get a writeable database
+        SQLiteDatabase database = databaseOpenHelper.getWritableDatabase();
 
 
 
@@ -81,11 +84,10 @@ public class HomeFragment extends Fragment {
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
                 if (group.getCheckedButtonId() ==R.id.start_button)
                 {
-                    // TODO 6: Check if ACC. sensor exists and register the sensor event listener to it when use press start button
                     if (accSensor != null)
                     {
-                        // TODO 15: Pass the TextView variable from the HomeFragment class to the StepCounterListener class
-                        sensorListener = new StepCounterListener(stepCountsView);
+                        // TODO 6.3: Pass the writeable database to the StepCounterListener class
+                        sensorListener = new StepCounterListener(stepCountsView, database);
                         sensorManager.registerListener(sensorListener, accSensor, SensorManager.SENSOR_DELAY_NORMAL);
                         Toast.makeText(getContext(), R.string.start_text, Toast.LENGTH_LONG).show();
                     }
@@ -95,23 +97,11 @@ public class HomeFragment extends Fragment {
                     }
 
 
-                    // TODO 19.1 (YOUR TURN): Check if the STEP_DETECTOR sensor exists, else show a toast message
-                    if (stepDetectorSensor != null)
-                    {
-                        // TODO 19.2 (YOUR TURN): Register the STEP_DETECTOR to the sensor manager object
-                        sensorListener = new StepCounterListener(stepCountsView);
-                        sensorManager.registerListener(sensorListener, stepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
-                        Toast.makeText(getContext(), R.string.start_text, Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getContext(), R.string.step_detector_sensor_not_available, Toast.LENGTH_LONG).show();
-                    }
+
 
                 }
                 else
                 {
-                    // TODO 7: unregister the sensor event listener from the sensor manager when the user press stop button
                     sensorManager.unregisterListener(sensorListener);
                     Toast.makeText(getContext(), R.string.stop_text, Toast.LENGTH_LONG).show();
                 }
@@ -128,54 +118,51 @@ public class HomeFragment extends Fragment {
     }
 }
 
-// TODO 5: Create a class that implements SensorEventListener interface
 class  StepCounterListener implements SensorEventListener{
 
     private long lastSensorUpdate = 0;
     public static int accStepCounter = 0;
     ArrayList<Integer> accSeries = new ArrayList<Integer>();
+    ArrayList<String> timestampsSeries = new ArrayList<String>();
     private double accMag = 0;
     private int lastAddedIndex = 1;
     int stepThreshold = 6;
 
-    //TODO 13: Declare the TextView in the listener class
     TextView stepCountsView;
+    private SQLiteDatabase database;
 
-    //TODO 18.1: Declare a counter for STEP_DETECTOR
-    public static int stepDetectorCounter = 0;
+    private String timestamp;
+    private String day;
+    private String hour;
 
 
-    //TODO 14: Pass the TextView to the listener class using the constructor
-    public StepCounterListener(TextView stepCountsView)
+    public StepCounterListener(TextView stepCountsView, SQLiteDatabase databse)
     {
         this.stepCountsView = stepCountsView;
+        this.database = databse;
     }
 
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        // TODO 8: Check the type of the sensor, this is helpful in case of multiple sensors (you will need for the next assignment)
         switch (sensorEvent.sensor.getType())
         {
             case Sensor.TYPE_LINEAR_ACCELERATION:
 
-                // TODO 9: Get the raw acc. sensor data
                 float x = sensorEvent.values[0];
                 float y = sensorEvent.values[1];
                 float z = sensorEvent.values[2];
 
-                // TODO 10: Log the raw acc. sensor data and the event timestamp
-
                 long currentTimeInMilliSecond = System.currentTimeMillis();
 
-                long timeUntilSensorEvent = (sensorEvent.timestamp - SystemClock.elapsedRealtimeNanos())/1000000;
+                long timeInMillis = currentTimeInMilliSecond + (sensorEvent.timestamp - SystemClock.elapsedRealtimeNanos()) / 1000000;
 
-                long SensorEventTimestampInMilliSecond =  currentTimeInMilliSecond + timeUntilSensorEvent;
+                // Convert the timestamp to date
+                SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+                jdf.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                String sensorEventDate = jdf.format(timeInMillis);
 
-                SimpleDateFormat sensorEventTimestamp = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
-                sensorEventTimestamp.setTimeZone(TimeZone.getTimeZone("GMT+2"));
 
-                String sensorEventDate = sensorEventTimestamp.format(SensorEventTimestampInMilliSecond);
 
 
                 if ((currentTimeInMilliSecond - lastSensorUpdate) > 1000)
@@ -185,25 +172,25 @@ class  StepCounterListener implements SensorEventListener{
                     Log.d("Acc. Event", "last sensor update at " + String.valueOf(sensorEventDate) + sensorRawValues);
                 }
 
-                // TODO 11 (YOUR TURN): Compute the magnitude for the acceleration
 
                 accMag = Math.sqrt(x*x+y*y+z*z);
 
-                // TODO 12 (YOUR TURN): Store the magnitude for the acceleration in accSeries
 
                 accSeries.add((int) accMag);
 
+                // Get the date, the day and the hour
+                timestamp = sensorEventDate;
+                day = sensorEventDate.substring(0,10);
+                hour = sensorEventDate.substring(11,13);
 
+                Log.d("SensorEventTimestampInMilliSecond", timestamp);
+
+
+                timestampsSeries.add(timestamp);
                 peakDetection();
 
                 break;
 
-            // TODO 18.3 (YOUR TURN): Add new case for STEP_DETECTOR sensor
-            case Sensor.TYPE_STEP_DETECTOR:
-                // TODO 18.4 (YOUR TURN): Call countSteps() function to count the number of steps using STEP_DETECTOR sensor
-                countSteps(sensorEvent.values[0]);
-
-                break;
         }
 
 
@@ -224,6 +211,7 @@ class  StepCounterListener implements SensorEventListener{
         }
 
         List<Integer> valuesInWindow = accSeries.subList(lastAddedIndex,currentSize);
+        List<String> timePointList = timestampsSeries.subList(lastAddedIndex,currentSize);
         lastAddedIndex = currentSize;
 
         for (int i = 1; i < valuesInWindow.size()-1; i++) {
@@ -233,19 +221,22 @@ class  StepCounterListener implements SensorEventListener{
             if (forwardSlope < 0 && downwardSlope > 0 && valuesInWindow.get(i) > stepThreshold) {
                 accStepCounter += 1;
                 Log.d("ACC STEPS: ", String.valueOf(accStepCounter));
-
-                //TODO 16: Update the TextView with the number of steps calculated using ACC. sensor
                 stepCountsView.setText(String.valueOf(accStepCounter));
+
+                // TODO 7: Put new sensor event timestamp in ContentValues
+                ContentValues databaseEntry = new ContentValues();
+                databaseEntry.put(StepAppOpenHelper.KEY_TIMESTAMP, timePointList.get(i));
+
+                // TODO 9 (YOUR TURN):  Put day and hour values in ContentValues
+                databaseEntry.put(StepAppOpenHelper.KEY_DAY, this.day);
+                databaseEntry.put(StepAppOpenHelper.KEY_HOUR, this.hour);
+
+                // TODO 8: Add new record in database
+                database.insert(StepAppOpenHelper.TABLE_NAME, null, databaseEntry);
+
             }
         }
     }
 
-    // TODO 18.2 (YOUR TURN): Implement countSteps() function to count the number of steps from the STEP_DETECTOR events and print them in the Logcat
-    private void countSteps(float step)
-    {
-        stepDetectorCounter += step;
 
-        Log.d("STEP_DETECTOR STEPS: ", String.valueOf(stepDetectorCounter));
-
-    }
 }

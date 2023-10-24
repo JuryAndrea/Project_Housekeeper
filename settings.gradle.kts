@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "StepAppV3"
+rootProject.name = "StepAppV4"
 include(":app")
  
