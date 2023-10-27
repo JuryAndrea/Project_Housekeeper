@@ -40,7 +40,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.navigation:navigation-fragment:2.7.0-alpha01")
     implementation("androidx.navigation:navigation-ui:2.7.0-alpha01")
-
+    implementation ("com.github.AnyChart:AnyChart-Android:1.1.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

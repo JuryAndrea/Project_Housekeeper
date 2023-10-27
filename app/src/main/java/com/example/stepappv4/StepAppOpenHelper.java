@@ -7,14 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-// TODO 1: Create a helper class for database operations
-// TODO 2: Extend the helper class with SQLiteOpenHelper
+
 public class StepAppOpenHelper extends SQLiteOpenHelper {
 
-    // TODO 4: Define variables for database scheme
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "stepapp";
     public static final String TABLE_NAME = "num_steps";
@@ -25,7 +26,6 @@ public class StepAppOpenHelper extends SQLiteOpenHelper {
     public static final String CREATE_TABLE_SQL = "CREATE TABLE  " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY, " +
             KEY_DAY + " TEXT, " + KEY_HOUR + "  TEXT, " + KEY_TIMESTAMP + "  TEXT);";
 
-    // TODO 3: Define the constructor for the class
     public StepAppOpenHelper (Context context)
     {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -78,7 +78,6 @@ public class StepAppOpenHelper extends SQLiteOpenHelper {
         return numSteps;
     }
 
-    // TODO 10 (YOUR TURN): Delete all records in the database
     public static void deleteRecords (Context context) {
         StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -93,7 +92,41 @@ public class StepAppOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    // TODO 5: populate the database
+
+    public static Map<Integer, Integer> loadStepsByHour(Context context, String date){
+        // 1. Define a map to store the hour and number of steps as key-value pairs
+        Map<Integer, Integer>  map = new HashMap<>();
+
+        // 2. Get the readable database
+        StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
+        SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        // 3. Define the query to get the data
+        Cursor cursor = database.rawQuery("SELECT hour, COUNT(*)  FROM num_steps " +
+                "WHERE day = ? GROUP BY hour ORDER BY  hour ASC ", new String [] {date});
+
+        // 4. Iterate over returned elements on the cursor
+        cursor.moveToFirst();
+        for (int index=0; index < cursor.getCount(); index++){
+            Integer tmpKey = Integer.parseInt(cursor.getString(0));
+            Integer tmpValue = Integer.parseInt(cursor.getString(1));
+
+            //2. Put the data from the database into the map
+            map.put(tmpKey, tmpValue);
+
+
+            cursor.moveToNext();
+        }
+
+        // 5. Close the cursor and database
+        cursor.close();
+        database.close();
+
+        // 6. Return the map with hours and number of steps
+        return map;
+    }
+
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 

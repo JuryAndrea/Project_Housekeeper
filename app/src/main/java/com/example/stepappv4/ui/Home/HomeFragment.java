@@ -20,8 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.stepappv4.R;
 import com.example.stepappv4.StepAppOpenHelper;
+import com.example.stepappv4.R;
 import com.example.stepappv4.databinding.FragmentHomeBinding;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
@@ -71,9 +71,7 @@ public class HomeFragment extends Fragment {
 
         stepDetectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
-        // TODO 6.1: Instantiate our StepAppOpenHelper class
         StepAppOpenHelper databaseOpenHelper = new StepAppOpenHelper(this.getContext());
-        // TODO 6.2: Get a writeable database
         SQLiteDatabase database = databaseOpenHelper.getWritableDatabase();
 
 
@@ -86,8 +84,7 @@ public class HomeFragment extends Fragment {
                 {
                     if (accSensor != null)
                     {
-                        // TODO 6.3: Pass the writeable database to the StepCounterListener class
-                        sensorListener = new StepCounterListener(stepCountsView, database);
+                        sensorListener = new StepCounterListener(stepCountsView, progressBar, database);
                         sensorManager.registerListener(sensorListener, accSensor, SensorManager.SENSOR_DELAY_NORMAL);
                         Toast.makeText(getContext(), R.string.start_text, Toast.LENGTH_LONG).show();
                     }
@@ -95,9 +92,6 @@ public class HomeFragment extends Fragment {
                     {
                         Toast.makeText(getContext(), R.string.acc_sensor_not_available, Toast.LENGTH_LONG).show();
                     }
-
-
-
 
                 }
                 else
@@ -129,6 +123,8 @@ class  StepCounterListener implements SensorEventListener{
     int stepThreshold = 6;
 
     TextView stepCountsView;
+
+    CircularProgressIndicator progressBar;
     private SQLiteDatabase database;
 
     private String timestamp;
@@ -136,10 +132,11 @@ class  StepCounterListener implements SensorEventListener{
     private String hour;
 
 
-    public StepCounterListener(TextView stepCountsView, SQLiteDatabase databse)
+    public StepCounterListener(TextView stepCountsView, CircularProgressIndicator progressBar,  SQLiteDatabase databse)
     {
         this.stepCountsView = stepCountsView;
         this.database = databse;
+        this.progressBar = progressBar;
     }
 
 
@@ -222,16 +219,14 @@ class  StepCounterListener implements SensorEventListener{
                 accStepCounter += 1;
                 Log.d("ACC STEPS: ", String.valueOf(accStepCounter));
                 stepCountsView.setText(String.valueOf(accStepCounter));
+                progressBar.setProgress(accStepCounter);
 
-                // TODO 7: Put new sensor event timestamp in ContentValues
                 ContentValues databaseEntry = new ContentValues();
                 databaseEntry.put(StepAppOpenHelper.KEY_TIMESTAMP, timePointList.get(i));
 
-                // TODO 9 (YOUR TURN):  Put day and hour values in ContentValues
                 databaseEntry.put(StepAppOpenHelper.KEY_DAY, this.day);
                 databaseEntry.put(StepAppOpenHelper.KEY_HOUR, this.hour);
 
-                // TODO 8: Add new record in database
                 database.insert(StepAppOpenHelper.TABLE_NAME, null, databaseEntry);
 
             }

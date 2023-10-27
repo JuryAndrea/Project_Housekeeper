@@ -15,13 +15,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.StepAppV4"
+        android:theme="@style/Theme.StepAppV5"
         tools:targetApi="31">
         <activity
-            android:name="com.example.stepappv4.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.StepAppV4.NoActionBar">
+            android:theme="@style/Theme.StepAppV5.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -29,4 +29,6 @@
     <string name="today">Today</string>
     <string name="get_all_steps">Get all steps</string>
     <string name="delete_all_steps">Delete all steps</string>
+
+    <string name="hourly_report">Hourly report</string>
 </resources>
