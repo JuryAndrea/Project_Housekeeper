@@ -77,18 +77,14 @@ public class ReportFragment extends Fragment {
         //***** Read data from SQLiteDatabase *********/
         // TODO 1 (YOUR TURN): Get the map with hours and number of steps for today
         //  from the database and assign it to variable stepsByHour
-        stepsByHour = StepAppOpenHelper.loadStepsByHour(getContext(), current_time);
 
         // TODO 2 (YOUR TURN): Creating a new map that contains hours of the day from 0 to 23 and
         //  number of steps during each hour set to 0
-        Map<Integer, Integer> graph_map = new TreeMap<>();
-        for(int i =0; i<23; i++){
-            graph_map.put(i, 0);
-        }
+
 
         // TODO 3 (YOUR TURN): Replace the number of steps for each hour in graph_map
         //  with the number of steps read from the database
-        graph_map.putAll(stepsByHour);
+
 
         //***** Create column chart using AnyChart library *********/
         // TODO 4: Create and get the cartesian coordinate system for column chart
@@ -105,8 +101,7 @@ public class ReportFragment extends Fragment {
 
         //***** Modify the UI of the chart *********/
        // TODO 7 (YOUR TURN): Change the color of column chart and its border
-        column.fill("#1EB980");
-        column.stroke("#1EB980");
+
 
 
         // TODO 8: Modifying properties of tooltip
@@ -116,10 +111,7 @@ public class ReportFragment extends Fragment {
                 .anchor(Anchor.RIGHT_BOTTOM);
 
         // TODO 9 (YOUR TURN): Modify column chart tooltip properties
-        column.tooltip()
-                .position(Position.RIGHT_TOP)
-                .offsetX(0d)
-                .offsetY(5);
+
 
         // Modifying properties of cartesian
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
@@ -128,10 +120,7 @@ public class ReportFragment extends Fragment {
 
 
         // TODO 10 (YOUR TURN): Modify the UI of the cartesian
-        cartesian.yAxis(0).title("Number of steps");
-        cartesian.xAxis(0).title("Hour");
-        cartesian.background().fill("#00000000");
-        cartesian.animation(true);
+
 
         return cartesian;
     }
