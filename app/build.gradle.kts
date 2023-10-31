@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.stepappv4"
+    namespace = "com.example.stepappv6"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.stepappv4"
+        applicationId = "com.example.stepappv6"
         minSdk = 26
         targetSdk = 33
         versionCode = 1

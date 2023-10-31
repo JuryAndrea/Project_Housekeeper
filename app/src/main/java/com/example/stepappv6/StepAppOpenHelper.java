@@ -1,4 +1,4 @@
-package com.example.stepappv4;
+package com.example.stepappv6;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 
 public class StepAppOpenHelper extends SQLiteOpenHelper {

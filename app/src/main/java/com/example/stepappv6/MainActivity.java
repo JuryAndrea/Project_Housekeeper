@@ -1,12 +1,14 @@
-package com.example.stepappv4;
+package com.example.stepappv6;
 
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.stepappv6.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,7 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 
-import com.example.stepappv4.databinding.ActivityMainBinding;
+import com.example.stepappv6.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     private static final int REQUEST_ACTIVITY_RECOGNITION_PERMISSION = 45;
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 46;
+    private static final int REQUEST_READ_EXTERNAL_STORAGE = 47;
     private boolean runningOorLater = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
 
     @Override
@@ -56,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        getWriteExternalStorage();
+        getReadExternalStorage();
 
         // Ask for activity recognition permission
         if (runningOorLater) {
@@ -88,6 +95,35 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             return;
+        }
+    }
+    // Ask for write external storage permission
+    private void getWriteExternalStorage() {
+        if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]
+                            {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_WRITE_EXTERNAL_STORAGE);
+        }
+        else
+        {
+            Log.i("WRITE_EXTERNAL_STORAGE", "PERMISSION_GRANTED");
+        }
+    }
+
+    // Ask for read external storage permission
+    private void getReadExternalStorage() {
+        if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]
+                            {Manifest.permission.READ_EXTERNAL_STORAGE},
+                    REQUEST_READ_EXTERNAL_STORAGE);
+        }
+        else
+        {
+            Log.i("READ_EXTERNAL_STORAGE", "PERMISSION_GRANTED");
         }
     }
     @Override
