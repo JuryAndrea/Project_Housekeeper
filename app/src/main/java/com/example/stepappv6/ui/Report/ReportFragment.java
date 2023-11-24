@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -246,14 +247,20 @@ public class ReportFragment extends Fragment {
     private void share(Bitmap bitmap) {
         try {
             // TODO (YOUR TURN) 1: Encode and parse the bitmap into a Uri object using getImageUri() helper function
+            Uri shareUri = getImageUri(requireContext(), bitmap);
 
             // TODO (YOUR TURN) 2: Create intent, set the type to image, with action send and add image URI as extra
-
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("image/*");
+            intent.putExtra(Intent.EXTRA_STREAM, shareUri);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             // TODO (YOUR TURN) 3: Start the intent and put as title "Share image to ..."
-
+            startActivity(Intent.createChooser(intent, "Share image to ..."));
         }
         catch (Exception e) {
             // TODO (YOUR TURN) 4: Show a toast with message "No implicit intent to handle this action."
+            Toast.makeText(getContext(), "No implicit intent to handle this action." + e, Toast.LENGTH_LONG).show();
         }
     }
 

@@ -43,6 +43,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import static com.example.stepappv6.ui.Home.HomeFragment.mNotifyManager;
+import static com.example.stepappv6.ui.Home.HomeFragment.stepsGoal;
 
 
 public class HomeFragment extends Fragment {
@@ -348,6 +349,9 @@ class StepCounterListener<stepsCompleted> implements SensorEventListener {
                     mACCStepCounter += 1;
 
                     // TODO (YOUR TURN) 10: Send a notification when the goal is reached
+                    if (mACCStepCounter == HomeFragment.stepsGoal) {
+                        mNotifyManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+                    }
 
 
                     // Update the TextView and the ProgressBar
