@@ -1,0 +1,15 @@
+<!-- res/menu/dropdown_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_1"
+        android:title="Dirty" />
+    <item
+        android:id="@+id/menu_item_2"
+        android:title="Cleaning" />
+    <item
+        android:id="@+id/menu_item_3"
+        android:title="Cleaned" />
+    <item
+        android:id="@+id/menu_item43"
+        android:title="Ready" />
+</menu>

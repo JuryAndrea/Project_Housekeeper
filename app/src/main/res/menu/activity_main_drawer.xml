@@ -9,6 +9,10 @@
             android:icon="@drawable/footsteps_silhouette_variant_svgrepo_com"
             android:title="@string/menu_steps" />
         <item
+            android:id="@+id/nav_room"
+            android:icon="@drawable/baseline_bedroom_24"
+            android:title="@string/menu_room" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/baseline_stacked_bar_chart_24"
             android:title="@string/menu_report" />
