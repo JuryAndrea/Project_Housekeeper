@@ -348,7 +348,7 @@ class StepCounterListener<stepsCompleted> implements SensorEventListener {
                     // Update the number of steps
                     mACCStepCounter += 1;
 
-                    // TODO (YOUR TURN) 10: Send a notification when the goal is reached
+
                     if (mACCStepCounter == HomeFragment.stepsGoal) {
                         mNotifyManager.notify(NOTIFICATION_ID, notificationBuilder.build());
                     }
