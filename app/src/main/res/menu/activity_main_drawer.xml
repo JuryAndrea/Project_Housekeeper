@@ -13,6 +13,10 @@
             android:icon="@drawable/baseline_stacked_bar_chart_24"
             android:title="@string/menu_report" />
         <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/baseline_camera_24"
+            android:title="@string/menu_camera" />
+        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/baseline_person_pin_24"
             android:title="@string/menu_profile" />
