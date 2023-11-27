@@ -7,112 +7,594 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="361dp"
-        android:layout_height="223dp"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
-        tools:ignore="NotSibling">
-<!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="332dp"
-            android:layout_height="86dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textViewRoomNumber"
-                    android:layout_width="286dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Room #"
-                    android:textAlignment="center"
-                    android:textSize="34sp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    tools:ignore="NotSibling">
+                    <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
 
-                <TextView
-                    android:id="@+id/RoomNumber"
-                    android:layout_width="322dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="1234"
-                    android:textAlignment="center"
-                    android:textSize="34sp" />
+
+                    <LinearLayout
+                        android:layout_width="332dp"
+                        android:layout_height="86dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewRoomNumber"
+                                android:layout_width="286dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Room #"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/RoomNumber"
+                                android:layout_width="322dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="1"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewGuestName"
+                                android:layout_width="491dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Guest"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/GuestName"
+                                android:layout_width="356dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Santini"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!--        <Button-->
+                    <!--            android:id="@+id/Status"-->
+                    <!--            android:layout_width="wrap_content"-->
+                    <!--            android:layout_height="68dp"-->
+                    <!--            android:layout_marginTop="10dp"-->
+                    <!--            android:text="Status"-->
+                    <!--            android:textSize="24sp"-->
+                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="Select a status from the dropdown"
+                        android:hint="Status"
+                        android:textSize="24sp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/filled"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:inputType="none">
+
+                        </AutoCompleteTextView>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textViewGuestName"
-                    android:layout_width="491dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Guest"
-                    android:textAlignment="center"
-                    android:textSize="34sp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    tools:ignore="NotSibling">
+                    <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
 
-                <TextView
-                    android:id="@+id/GuestName"
-                    android:layout_width="356dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Santini"
-                    android:textAlignment="center"
-                    android:textSize="34sp" />
+
+                    <LinearLayout
+                        android:layout_width="332dp"
+                        android:layout_height="86dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewRoomNumber2"
+                                android:layout_width="286dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Room #"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/RoomNumber2"
+                                android:layout_width="322dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="2"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewGuestName2"
+                                android:layout_width="491dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Guest"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/GuestName2"
+                                android:layout_width="356dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Alchieri"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!--        <Button-->
+                    <!--            android:id="@+id/Status"-->
+                    <!--            android:layout_width="wrap_content"-->
+                    <!--            android:layout_height="68dp"-->
+                    <!--            android:layout_marginTop="10dp"-->
+                    <!--            android:text="Status"-->
+                    <!--            android:textSize="24sp"-->
+                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="Select a status from the dropdown"
+                        android:hint="Status"
+                        android:textSize="24sp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/filled2"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:inputType="none">
+
+                        </AutoCompleteTextView>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    tools:ignore="NotSibling">
+                    <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
+
+
+                    <LinearLayout
+                        android:layout_width="332dp"
+                        android:layout_height="86dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewRoomNumber3"
+                                android:layout_width="286dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Room #"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/RoomNumber3"
+                                android:layout_width="322dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="3"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewGuestName3"
+                                android:layout_width="491dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Guest"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/GuestName3"
+                                android:layout_width="356dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Abdalazim"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!--        <Button-->
+                    <!--            android:id="@+id/Status"-->
+                    <!--            android:layout_width="wrap_content"-->
+                    <!--            android:layout_height="68dp"-->
+                    <!--            android:layout_marginTop="10dp"-->
+                    <!--            android:text="Status"-->
+                    <!--            android:textSize="24sp"-->
+                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="Select a status from the dropdown"
+                        android:hint="Status"
+                        android:textSize="24sp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/filled3"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:inputType="none">
+
+                        </AutoCompleteTextView>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    tools:ignore="NotSibling">
+                    <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
+
+
+                    <LinearLayout
+                        android:layout_width="332dp"
+                        android:layout_height="86dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewRoomNumber4"
+                                android:layout_width="286dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Room #"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/RoomNumber4"
+                                android:layout_width="322dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="5"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewGuestName4"
+                                android:layout_width="491dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Guest"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/GuestName4"
+                                android:layout_width="356dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Altrichter"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!--        <Button-->
+                    <!--            android:id="@+id/Status"-->
+                    <!--            android:layout_width="wrap_content"-->
+                    <!--            android:layout_height="68dp"-->
+                    <!--            android:layout_marginTop="10dp"-->
+                    <!--            android:text="Status"-->
+                    <!--            android:textSize="24sp"-->
+                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="Select a status from the dropdown"
+                        android:hint="Status"
+                        android:textSize="24sp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/filled4"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:inputType="none">
+
+                        </AutoCompleteTextView>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    tools:ignore="NotSibling">
+                    <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
+
+
+                    <LinearLayout
+                        android:layout_width="332dp"
+                        android:layout_height="86dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewRoomNumber5"
+                                android:layout_width="286dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Room #"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/RoomNumber5"
+                                android:layout_width="322dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="6"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewGuestName5"
+                                android:layout_width="491dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Guest"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/GuestName5"
+                                android:layout_width="356dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="D'Onofrio"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="34sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!--        <Button-->
+                    <!--            android:id="@+id/Status"-->
+                    <!--            android:layout_width="wrap_content"-->
+                    <!--            android:layout_height="68dp"-->
+                    <!--            android:layout_marginTop="10dp"-->
+                    <!--            android:text="Status"-->
+                    <!--            android:textSize="24sp"-->
+                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="Select a status from the dropdown"
+                        android:hint="Status"
+                        android:textSize="24sp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/filled5"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:inputType="none">
+
+                        </AutoCompleteTextView>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            
             </LinearLayout>
 
         </LinearLayout>
 
-<!--        <Button-->
-<!--            android:id="@+id/Status"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="68dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:text="Status"-->
-<!--            android:textSize="24sp"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+    </ScrollView>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:layout_marginTop="10dp"
-            android:textSize="24sp"
-            android:hint="Status"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-
-            <AutoCompleteTextView
-                android:id="@+id/filled"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:inputType="none">
-            </AutoCompleteTextView>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
-    </LinearLayout>
-
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/logout"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

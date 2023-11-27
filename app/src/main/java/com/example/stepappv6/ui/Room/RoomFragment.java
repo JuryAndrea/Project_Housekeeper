@@ -47,10 +47,50 @@ public class RoomFragment extends Fragment {
         AutoCompleteTextView autoCompleteTextView = root.findViewById(R.id.filled);
         autoCompleteTextView.setAdapter(arrayAdapter);
 
+        AutoCompleteTextView autoCompleteTextView2 = root.findViewById(R.id.filled2);
+        autoCompleteTextView2.setAdapter(arrayAdapter);
+
+        AutoCompleteTextView autoCompleteTextView3 = root.findViewById(R.id.filled3);
+        autoCompleteTextView3.setAdapter(arrayAdapter);
+
+        AutoCompleteTextView autoCompleteTextView4 = root.findViewById(R.id.filled4);
+        autoCompleteTextView4.setAdapter(arrayAdapter);
+
+        AutoCompleteTextView autoCompleteTextView5 = root.findViewById(R.id.filled5);
+        autoCompleteTextView5.setAdapter(arrayAdapter);
+
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getContext(), autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), autoCompleteTextView2.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        autoCompleteTextView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), autoCompleteTextView3.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        autoCompleteTextView4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), autoCompleteTextView4.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        autoCompleteTextView5.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), autoCompleteTextView5.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
