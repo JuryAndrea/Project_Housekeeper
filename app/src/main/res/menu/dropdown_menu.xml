@@ -2,14 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_item_1"
-        android:title="Dirty" />
+        android:checkable="true"
+        android:enabled="true"
+        android:title="Dirty"
+        android:visible="true" />
     <item
         android:id="@+id/menu_item_2"
+        android:visible="true"
+        android:enabled="true"
         android:title="Cleaning" />
     <item
         android:id="@+id/menu_item_3"
+        android:visible="true"
+        android:enabled="true"
         android:title="Cleaned" />
     <item
         android:id="@+id/menu_item43"
+        android:visible="true"
+        android:enabled="true"
         android:title="Ready" />
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="false"
+        android:enabled="true"
+        android:iconTint="#ED1111"
+        android:title="Test"
+        android:visible="true" />
 </menu>
