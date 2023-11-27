@@ -41,7 +41,7 @@ public class RoomFragment extends Fragment {
         binding = FragmentRoomBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        String[] status = new String[]{"Dirty", "Cleaning", "Cleaned", "Ready", "Test"};
+        String[] status = new String[]{"Dirty", "Cleaning", "Cleaned", "Ready"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, status);
 
         AutoCompleteTextView autoCompleteTextView = root.findViewById(R.id.filled);
