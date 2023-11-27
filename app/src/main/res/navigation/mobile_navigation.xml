@@ -15,7 +15,7 @@
         android:id="@+id/nav_room"
         android:name="com.example.stepappv6.ui.Room.RoomFragment"
         android:label="@string/menu_room"
-        tools:layout="@layout/fragment_report" />
+        tools:layout="@layout/fragment_room" />
 
     <fragment
         android:id="@+id/nav_gallery"

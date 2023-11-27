@@ -14,12 +14,13 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.53"
         tools:ignore="NotSibling">
+<!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
+
 
         <LinearLayout
             android:layout_width="332dp"
@@ -81,26 +82,46 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/Status"
-            android:layout_width="wrap_content"
+<!--        <Button-->
+<!--            android:id="@+id/Status"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="68dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:text="Status"-->
+<!--            android:textSize="24sp"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginTop="10dp"
-            android:text="Status"
             android:textSize="24sp"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:hint="Status"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/filled"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="none">
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <Button-->
+<!--        android:id="@+id/logout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="36dp"-->
+<!--        android:text="Logout"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

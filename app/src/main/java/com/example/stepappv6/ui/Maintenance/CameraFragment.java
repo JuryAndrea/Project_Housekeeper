@@ -38,7 +38,6 @@ public class CameraFragment extends Fragment {
         binding = FragmentCameraBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //TODO: Change color of textViews
         //TODO: Store the image in the database
 
         btnpicture = root.findViewById(R.id.capture);
