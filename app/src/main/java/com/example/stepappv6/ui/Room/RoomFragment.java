@@ -94,44 +94,6 @@ public class RoomFragment extends Fragment {
             }
         });
 
-//        status = root.findViewById(R.id.Status);
-//        logout = root.findViewById(R.id.logout);
-
-
-
-
-        // Setting onClick behavior to the button
-//        status.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Initializing the popup menu and giving the reference as current context
-//                PopupMenu popupMenu = new PopupMenu(getContext(), status);
-//
-//                // Inflating popup menu from popup_menu.xml file
-//                popupMenu.getMenuInflater().inflate(R.menu.dropdown_menu, popupMenu.getMenu());
-//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem menuItem) {
-//                        // Toast message on menu item clicked
-//                        Toast.makeText(getContext(), "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    }
-//                });
-//                // Showing the popup menu
-//                popupMenu.show();
-//            }
-//        });
-
-
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), LoginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
         return root;
     }
 }

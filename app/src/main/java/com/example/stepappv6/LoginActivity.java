@@ -40,10 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        getSupportActionBar().setDisplayShowCustomEnabled(true);
-//        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View view = inflater.inflate(R.layout.header_logo, null);
-//        getSupportActionBar().setCustomView(view);
+
+
+        /*
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.header_logo, null);
+        getSupportActionBar().setCustomView(view);
+
 
         buttonLogin = findViewById(R.id.login);
         editTextPassword = findViewById(R.id.editTextTextPassword);
@@ -103,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        */
 
     }
 

@@ -13,6 +13,9 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ public class CameraFragment extends Fragment {
     private static final int REQUEST_CODE = 22;
 
     Button btnpicture;
+    Button btnsend;
     ImageView imageView;
 
     FragmentCameraBinding binding;
@@ -38,16 +42,58 @@ public class CameraFragment extends Fragment {
         binding = FragmentCameraBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //TODO: Store the image in the database
-
         btnpicture = root.findViewById(R.id.capture);
         imageView = root.findViewById(R.id.imageview);
+        btnsend = root.findViewById(R.id.send);
+
+
+
+        String[] rooms = new String[]{"1", "2", "3", "5", "6"};
+        String[] objects = new String[]{"Bed", "TV", "Curtains", "Lamp", "Night Stands"};
+        String[] priority = new String[]{"High", "Medium", "Low"};
+        ArrayAdapter<String> arrayAdapter_rooms = new ArrayAdapter<>(getContext(), R.layout.dropdown_room, rooms);
+        ArrayAdapter<String> arrayAdapter_objects = new ArrayAdapter<>(getContext(), R.layout.dropdown_room, objects);
+        ArrayAdapter<String> arrayAdapter_priority = new ArrayAdapter<>(getContext(), R.layout.dropdown_room, priority);
+
+        AutoCompleteTextView autoCompleteTextView = root.findViewById(R.id.filled);
+        autoCompleteTextView.setAdapter(arrayAdapter_rooms);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AutoCompleteTextView autoCompleteTextView2 = root.findViewById(R.id.filled_2);
+        autoCompleteTextView2.setAdapter(arrayAdapter_objects);
+        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), autoCompleteTextView2.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AutoCompleteTextView autoCompleteTextView3 = root.findViewById(R.id.filled_3);
+        autoCompleteTextView3.setAdapter(arrayAdapter_priority);
+        autoCompleteTextView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), autoCompleteTextView3.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btnpicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, REQUEST_CODE);
+            }
+        });
+
+        btnsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: reset for sending new alert
             }
         });
 

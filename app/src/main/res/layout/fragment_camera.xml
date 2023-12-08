@@ -13,51 +13,98 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="111dp"
-        android:layout_marginEnd="128dp"
-        android:text="Capture broken furniture" />
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:text="Capture broken furniture"
+        android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/capture"
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text"
-        android:text="Camera"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+        android:layout_below="@+id/text"
+        android:layout_marginTop="15dp"
+        android:contentDescription="Select the room"
+        android:hint="Room"
+        android:textSize="24sp"
+        android:id="@+id/select_room">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="none">
+        </AutoCompleteTextView>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_room"
+        android:layout_marginTop="15dp"
+        android:contentDescription="Select the room"
+        android:hint="Object"
+        android:textSize="24sp"
+        android:id="@+id/select_object">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="none">
+        </AutoCompleteTextView>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_object"
+        android:layout_marginTop="15dp"
+        android:contentDescription="Select a description"
+        android:hint="Priority"
+        android:textSize="24sp"
+        android:id="@+id/select_priority">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="none">
+        </AutoCompleteTextView>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
-        android:id="@+id/text2"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/capture"
+        android:layout_below="@id/select_priority"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="0dp"
-        android:hint="Object Type:" />
-
-    <EditText
-        android:id="@+id/text3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginTop="15dp"
         android:hint="Description" />
+
+        <Button
+            android:id="@+id/capture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description"
+            android:layout_marginTop="15dp"
+            android:text="Take a picture" />
 
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_below="@id/text3"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@id/capture"
+        android:layout_marginTop="15dp" />
 
     <Button
         android:id="@+id/send"
@@ -68,6 +115,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp" />
-    />
+
 
 </RelativeLayout>
