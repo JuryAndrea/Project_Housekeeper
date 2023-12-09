@@ -28,7 +28,7 @@
         android:layout_below="@+id/text"
         android:layout_marginTop="15dp"
         android:contentDescription="Select the room"
-        android:hint="Room"
+        android:hint="@string/room"
         android:textSize="24sp"
         android:id="@+id/select_room">
 
@@ -91,30 +91,40 @@
         android:layout_marginTop="15dp"
         android:hint="Description" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/buttons"
+        android:layout_below="@id/description"
+        android:layout_marginTop="15dp"
+        android:weightSum="2">
+
         <Button
             android:id="@+id/capture"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/description"
-            android:layout_marginTop="15dp"
-            android:text="Take a picture" />
+            android:text="Take a picture"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/capture"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttons"
         android:layout_marginTop="15dp" />
-
-    <Button
-        android:id="@+id/send"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageview"
-        android:text="Send"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20dp" />
-
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.stepappv6.ui.Maintenance;
 import static android.app.Activity.RESULT_OK;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +19,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.stepappv6.R;
 import com.example.stepappv6.databinding.FragmentCameraBinding;
 import com.example.stepappv6.databinding.FragmentReportBinding;
+import com.google.android.material.textfield.TextInputLayout;
 
 
 public class CameraFragment extends Fragment {
@@ -33,7 +37,12 @@ public class CameraFragment extends Fragment {
     Button btnsend;
     ImageView imageView;
 
+    EditText description;
+
     FragmentCameraBinding binding;
+
+    TextInputLayout roomInputLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,11 +55,14 @@ public class CameraFragment extends Fragment {
         imageView = root.findViewById(R.id.imageview);
         btnsend = root.findViewById(R.id.send);
 
+        description = root.findViewById(R.id.description);
 
+        roomInputLayout = root.findViewById(R.id.select_room);
 
         String[] rooms = new String[]{"1", "2", "3", "5", "6"};
         String[] objects = new String[]{"Bed", "TV", "Curtains", "Lamp", "Night Stands"};
         String[] priority = new String[]{"High", "Medium", "Low"};
+
         ArrayAdapter<String> arrayAdapter_rooms = new ArrayAdapter<>(getContext(), R.layout.dropdown_room, rooms);
         ArrayAdapter<String> arrayAdapter_objects = new ArrayAdapter<>(getContext(), R.layout.dropdown_room, objects);
         ArrayAdapter<String> arrayAdapter_priority = new ArrayAdapter<>(getContext(), R.layout.dropdown_room, priority);
@@ -93,7 +105,27 @@ public class CameraFragment extends Fragment {
         btnsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: reset for sending new alert
+
+                imageView.setImageResource(android.R.color.transparent);
+
+                description.setText("");
+                description.setHint("Description");
+
+                //TODO: add the reset part for everyone
+                //TODO: remove the hint from the border
+
+                // Clear text in AutoCompleteTextView
+                autoCompleteTextView.getText().clear();
+                autoCompleteTextView.setHint(R.string.room);
+                autoCompleteTextView.setHintTextColor(getResources().getColor(R.color.md_theme_light_outline));
+
+
+                roomInputLayout.setError(null);
+                roomInputLayout.setHelperText(null);
+
+
+
+
             }
         });
 
