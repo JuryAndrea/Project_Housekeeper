@@ -47,7 +47,7 @@
         android:layout_below="@+id/select_room"
         android:layout_marginTop="15dp"
         android:contentDescription="Select the room"
-        android:hint="Object"
+        android:hint="@string/object"
         android:textSize="24sp"
         android:id="@+id/select_object">
 
@@ -67,7 +67,7 @@
         android:layout_below="@+id/select_object"
         android:layout_marginTop="15dp"
         android:contentDescription="Select a description"
-        android:hint="Priority"
+        android:hint="@string/priority"
         android:textSize="24sp"
         android:id="@+id/select_priority">
 
@@ -87,9 +87,9 @@
         android:layout_below="@id/select_priority"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
         android:layout_marginTop="15dp"
-        android:hint="Description" />
+        android:hint="@string/description"
+        android:textColorHint="@color/md_theme_light_outline"/>
 
 
     <LinearLayout

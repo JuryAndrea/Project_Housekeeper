@@ -59,6 +59,8 @@ public class CameraFragment extends Fragment {
 
         roomInputLayout = root.findViewById(R.id.select_room);
 
+        // TODO: refactor the code
+
         String[] rooms = new String[]{"1", "2", "3", "5", "6"};
         String[] objects = new String[]{"Bed", "TV", "Curtains", "Lamp", "Night Stands"};
         String[] priority = new String[]{"High", "Medium", "Low"};
@@ -69,30 +71,14 @@ public class CameraFragment extends Fragment {
 
         AutoCompleteTextView autoCompleteTextView = root.findViewById(R.id.filled);
         autoCompleteTextView.setAdapter(arrayAdapter_rooms);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         AutoCompleteTextView autoCompleteTextView2 = root.findViewById(R.id.filled_2);
         autoCompleteTextView2.setAdapter(arrayAdapter_objects);
-        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), autoCompleteTextView2.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         AutoCompleteTextView autoCompleteTextView3 = root.findViewById(R.id.filled_3);
         autoCompleteTextView3.setAdapter(arrayAdapter_priority);
-        autoCompleteTextView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), autoCompleteTextView3.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         btnpicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,25 +92,26 @@ public class CameraFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                // Clear the image view
                 imageView.setImageResource(android.R.color.transparent);
 
+                // Clear the description
                 description.setText("");
-                description.setHint("Description");
-
-                //TODO: add the reset part for everyone
-                //TODO: remove the hint from the border
+                description.setHint(R.string.description);
+                description.setHintTextColor(getResources().getColor(R.color.md_theme_light_outline));
 
                 // Clear text in AutoCompleteTextView
                 autoCompleteTextView.getText().clear();
                 autoCompleteTextView.setHint(R.string.room);
                 autoCompleteTextView.setHintTextColor(getResources().getColor(R.color.md_theme_light_outline));
 
+                autoCompleteTextView2.getText().clear();
+                autoCompleteTextView2.setHint(R.string.object);
+                autoCompleteTextView2.setHintTextColor(getResources().getColor(R.color.md_theme_light_outline));
 
-                roomInputLayout.setError(null);
-                roomInputLayout.setHelperText(null);
-
-
-
+                autoCompleteTextView3.getText().clear();
+                autoCompleteTextView3.setHint(R.string.priority);
+                autoCompleteTextView3.setHintTextColor(getResources().getColor(R.color.md_theme_light_outline));
 
             }
         });
