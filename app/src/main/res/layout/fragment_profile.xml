@@ -38,7 +38,7 @@
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/baseline_person_100"/>
+                    android:src="@drawable/baseline_person_200"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,24 +48,25 @@
 
                             <TextView
                                 android:id="@+id/textViewRoomNumber"
-                                android:layout_width="286dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="Room #"
+                                android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
+                                android:textSize="33sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/RoomNumber"
-                                android:layout_width="322dp"
-                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewGuestName"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="1"
+                                android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="33sp"
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -76,47 +77,35 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textViewGuestName"
-                                android:layout_width="491dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Guest"
+                                android:id="@+id/RoomNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="1"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
-                                android:textStyle="bold" />
+                                android:textSize="30sp" />
 
                             <TextView
                                 android:id="@+id/GuestName"
-                                android:layout_width="356dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="Santini"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="30sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
-
-                    <!--        <Button-->
-                    <!--            android:id="@+id/Status"-->
-                    <!--            android:layout_width="wrap_content"-->
-                    <!--            android:layout_height="68dp"-->
-                    <!--            android:layout_marginTop="10dp"-->
-                    <!--            android:text="Status"-->
-                    <!--            android:textSize="24sp"-->
-                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="Select a status from the dropdown"
                         android:hint="Status"
-                        android:textSize="24sp">
+                        android:textSize="30sp">
 
                         <AutoCompleteTextView
                             android:id="@+id/filled"
@@ -162,24 +151,25 @@
 
                             <TextView
                                 android:id="@+id/textViewRoomNumber2"
-                                android:layout_width="286dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="Room #"
+                                android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
+                                android:textSize="33sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/RoomNumber2"
-                                android:layout_width="322dp"
-                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewGuestName2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="2"
+                                android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="33sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -190,47 +180,36 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textViewGuestName2"
-                                android:layout_width="491dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Guest"
+                                android:id="@+id/RoomNumber2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="2"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
-                                android:textStyle="bold" />
+                                android:textSize="30sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName2"
-                                android:layout_width="356dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="Alchieri"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="30sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
 
-                    <!--        <Button-->
-                    <!--            android:id="@+id/Status"-->
-                    <!--            android:layout_width="wrap_content"-->
-                    <!--            android:layout_height="68dp"-->
-                    <!--            android:layout_marginTop="10dp"-->
-                    <!--            android:text="Status"-->
-                    <!--            android:textSize="24sp"-->
-                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="Select a status from the dropdown"
                         android:hint="Status"
-                        android:textSize="24sp">
+                        android:textSize="30sp">
 
                         <AutoCompleteTextView
                             android:id="@+id/filled2"
@@ -246,7 +225,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -276,24 +255,25 @@
 
                             <TextView
                                 android:id="@+id/textViewRoomNumber3"
-                                android:layout_width="286dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="Room #"
+                                android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
+                                android:textSize="33sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/RoomNumber3"
-                                android:layout_width="322dp"
+                                android:id="@+id/textViewGuestName3"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="3"
+                                android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="33sp"
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -304,25 +284,24 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textViewGuestName3"
-                                android:layout_width="491dp"
+                                android:id="@+id/RoomNumber3"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Guest"
+                                android:layout_weight="1"
+                                android:text="3"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
-                                android:textStyle="bold" />
+                                android:textSize="30sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName3"
-                                android:layout_width="356dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="Abdalazim"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="30sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -340,11 +319,10 @@
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="Select a status from the dropdown"
                         android:hint="Status"
-                        android:textSize="24sp">
+                        android:textSize="30sp">
 
                         <AutoCompleteTextView
                             android:id="@+id/filled3"
@@ -390,24 +368,25 @@
 
                             <TextView
                                 android:id="@+id/textViewRoomNumber4"
-                                android:layout_width="286dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="Room #"
+                                android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
+                                android:textSize="33sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/RoomNumber4"
-                                android:layout_width="322dp"
-                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewGuestName4"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="5"
+                                android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="33sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -418,25 +397,24 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textViewGuestName4"
-                                android:layout_width="491dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Guest"
+                                android:id="@+id/RoomNumber4"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="5"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
-                                android:textStyle="bold" />
+                                android:textSize="30sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName4"
-                                android:layout_width="356dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="Altrichter"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="30sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -454,11 +432,10 @@
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="Select a status from the dropdown"
                         android:hint="Status"
-                        android:textSize="24sp">
+                        android:textSize="30sp">
 
                         <AutoCompleteTextView
                             android:id="@+id/filled4"
@@ -488,7 +465,6 @@
                     android:orientation="vertical"
                     android:padding="16dp"
                     tools:ignore="NotSibling">
-                    <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
 
 
                     <LinearLayout
@@ -504,24 +480,25 @@
 
                             <TextView
                                 android:id="@+id/textViewRoomNumber5"
-                                android:layout_width="286dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="Room #"
+                                android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
+                                android:textSize="33sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/RoomNumber5"
-                                android:layout_width="322dp"
-                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewGuestName5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="6"
+                                android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="33sp"
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -532,25 +509,24 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textViewGuestName5"
-                                android:layout_width="491dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Guest"
+                                android:id="@+id/RoomNumber5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="6"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp"
-                                android:textStyle="bold" />
+                                android:textSize="30sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName5"
-                                android:layout_width="356dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="D'Onofrio"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="34sp" />
+                                android:textSize="30sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -568,11 +544,10 @@
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="Select a status from the dropdown"
                         android:hint="Status"
-                        android:textSize="24sp">
+                        android:textSize="30sp">
 
                         <AutoCompleteTextView
                             android:id="@+id/filled5"
@@ -587,22 +562,13 @@
 
                 </LinearLayout>
 
-            
+
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
-    <!--    <Button-->
-<!--        android:id="@+id/logout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="36dp"-->
-<!--        android:text="Logout"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

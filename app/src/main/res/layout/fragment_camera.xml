@@ -15,10 +15,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:text="Capture broken furniture"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textAlignment="center"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -101,21 +102,23 @@
         android:id="@+id/buttons"
         android:layout_below="@id/description"
         android:layout_marginTop="15dp"
-        android:weightSum="2">
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/capture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Take a picture"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Send"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textSize="15sp"/>
 
     </LinearLayout>
 
