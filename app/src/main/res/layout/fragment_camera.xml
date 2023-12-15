@@ -18,8 +18,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:text="Capture broken furniture"
-        android:textSize="20dp"
-        android:textAlignment="center"/>
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -110,7 +111,8 @@
             android:layout_height="match_parent"
             android:text="Take a picture"
             android:layout_weight="1"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginEnd="3dp"/>
 
         <Button
             android:id="@+id/send"
@@ -118,7 +120,8 @@
             android:layout_height="match_parent"
             android:text="Send"
             android:layout_weight="1"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginStart="3dp"/>
 
     </LinearLayout>
 

@@ -10,8 +10,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -30,14 +28,14 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="16dp"
+                    android:padding="15dp"
                     tools:ignore="NotSibling">
                     <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
 
 
                     <LinearLayout
-                        android:layout_width="332dp"
-                        android:layout_height="86dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -54,7 +52,7 @@
                                 android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -65,7 +63,7 @@
                                 android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold"/>
 
                         </LinearLayout>
@@ -84,7 +82,7 @@
                                 android:text="1"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp" />
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/GuestName"
@@ -94,31 +92,55 @@
                                 android:text="Santini"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp" />
+                                android:textSize="20sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:hint="Status"
-                        android:textSize="30sp">
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/filled"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="none">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                        </AutoCompleteTextView>
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                                android:hint="Status"
+                                android:textSize="20sp"
+                                android:layout_weight="1">
 
+                                <AutoCompleteTextView
+                                    android:id="@+id/filled"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="none">
 
+                                </AutoCompleteTextView>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/status_room1"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/black" />
 
             </LinearLayout>
 
@@ -133,14 +155,14 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="16dp"
+                    android:padding="15dp"
                     tools:ignore="NotSibling">
                     <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
 
 
                     <LinearLayout
-                        android:layout_width="332dp"
-                        android:layout_height="86dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -157,7 +179,7 @@
                                 android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -168,7 +190,7 @@
                                 android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -187,7 +209,7 @@
                                 android:text="2"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp"/>
+                                android:textSize="20sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName2"
@@ -197,32 +219,57 @@
                                 android:text="Alchieri"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp" />
+                                android:textSize="20sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:hint="Status"
-                        android:textSize="30sp">
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/filled2"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="none">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                        </AutoCompleteTextView>
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                                android:hint="Status"
+                                android:textSize="20sp"
+                                android:layout_weight="1">
 
+                                <AutoCompleteTextView
+                                    android:id="@+id/filled2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="none">
+
+                                </AutoCompleteTextView>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/status_room2"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/black" />
 
             </LinearLayout>
 
@@ -237,14 +284,14 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="16dp"
+                    android:padding="15dp"
                     tools:ignore="NotSibling">
                     <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
 
 
                     <LinearLayout
-                        android:layout_width="332dp"
-                        android:layout_height="86dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -261,7 +308,7 @@
                                 android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -272,7 +319,7 @@
                                 android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold"/>
 
                         </LinearLayout>
@@ -291,7 +338,7 @@
                                 android:text="3"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp"/>
+                                android:textSize="20sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName3"
@@ -301,41 +348,55 @@
                                 android:text="Abdalazim"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp" />
+                                android:textSize="20sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
-
-                    <!--        <Button-->
-                    <!--            android:id="@+id/Status"-->
-                    <!--            android:layout_width="wrap_content"-->
-                    <!--            android:layout_height="68dp"-->
-                    <!--            android:layout_marginTop="10dp"-->
-                    <!--            android:text="Status"-->
-                    <!--            android:textSize="24sp"-->
-                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:hint="Status"
-                        android:textSize="30sp">
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/filled3"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="none">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                        </AutoCompleteTextView>
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Status"
+                                android:textSize="20sp"
+                                android:layout_weight="1">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                                <AutoCompleteTextView
+                                    android:id="@+id/filled3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="none">
 
+                                </AutoCompleteTextView>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/status_room3"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/black" />
 
             </LinearLayout>
 
@@ -350,14 +411,13 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="16dp"
+                    android:padding="15dp"
                     tools:ignore="NotSibling">
-                    <!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
 
 
                     <LinearLayout
-                        android:layout_width="332dp"
-                        android:layout_height="86dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -374,7 +434,7 @@
                                 android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -385,7 +445,7 @@
                                 android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -404,7 +464,7 @@
                                 android:text="5"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp"/>
+                                android:textSize="20sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName4"
@@ -414,41 +474,55 @@
                                 android:text="Altrichter"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp" />
+                                android:textSize="20sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
 
-                    <!--        <Button-->
-                    <!--            android:id="@+id/Status"-->
-                    <!--            android:layout_width="wrap_content"-->
-                    <!--            android:layout_height="68dp"-->
-                    <!--            android:layout_marginTop="10dp"-->
-                    <!--            android:text="Status"-->
-                    <!--            android:textSize="24sp"-->
-                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:hint="Status"
-                        android:textSize="30sp">
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/filled4"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="none">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                        </AutoCompleteTextView>
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Status"
+                                android:textSize="20sp"
+                                android:layout_weight="1">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                                <AutoCompleteTextView
+                                    android:id="@+id/filled4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="none">
 
+                                </AutoCompleteTextView>
 
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/status_room4"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/black" />
 
             </LinearLayout>
 
@@ -463,13 +537,13 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="16dp"
+                    android:padding="15dp"
                     tools:ignore="NotSibling">
 
 
                     <LinearLayout
-                        android:layout_width="332dp"
-                        android:layout_height="86dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -486,7 +560,7 @@
                                 android:text="Room"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -497,7 +571,7 @@
                                 android:text="Guest"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="33sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold"/>
 
                         </LinearLayout>
@@ -516,7 +590,7 @@
                                 android:text="6"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp"/>
+                                android:textSize="20sp"/>
 
                             <TextView
                                 android:id="@+id/GuestName5"
@@ -526,43 +600,178 @@
                                 android:text="D'Onofrio"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="30sp" />
+                                android:textSize="20sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
-
-                    <!--        <Button-->
-                    <!--            android:id="@+id/Status"-->
-                    <!--            android:layout_width="wrap_content"-->
-                    <!--            android:layout_height="68dp"-->
-                    <!--            android:layout_marginTop="10dp"-->
-                    <!--            android:text="Status"-->
-                    <!--            android:textSize="24sp"-->
-                    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:hint="Status"
-                        android:textSize="30sp">
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/filled5"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="none">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                        </AutoCompleteTextView>
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Status"
+                                android:textSize="20sp"
+                                android:layout_weight="1">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                                <AutoCompleteTextView
+                                    android:id="@+id/filled5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="none">
+
+                                </AutoCompleteTextView>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/status_room5"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
 
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    tools:ignore="NotSibling">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textViewRoomNumber7"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="Room"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="25sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textViewGuestName7"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="Guest"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="25sp"
+                                android:textStyle="bold"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/RoomNumber7"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="7"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"/>
+
+                            <TextView
+                                android:id="@+id/GuestName7"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="Vavassori"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Status"
+                                android:textSize="20sp"
+                                android:layout_weight="1">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/filled6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="none">
+
+                                </AutoCompleteTextView>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/status_room6"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
