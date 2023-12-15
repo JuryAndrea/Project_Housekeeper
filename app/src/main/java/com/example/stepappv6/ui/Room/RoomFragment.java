@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,10 @@ import com.example.stepappv6.LoginActivity;
 import com.example.stepappv6.R;
 import com.example.stepappv6.databinding.FragmentCameraBinding;
 import com.example.stepappv6.databinding.FragmentRoomBinding;
+
+import java.util.Map;
+
+import raspitransfer.dataretriever;
 
 
 public class RoomFragment extends Fragment {
@@ -130,6 +135,16 @@ public class RoomFragment extends Fragment {
                 set_image(pos, status_image6);
             }
         });
+
+
+//      HERE WE GET THE ROOM STATUS UPDATE
+        dataretriever obj = new dataretriever(6);
+        Log.d("SSH", "1");
+        String occdata = obj.retrieve(getContext());
+        Log.d("SSH", "2");
+        Map<Integer, Integer> roomstatus = obj.parseJsonString(occdata);
+        Log.d("SSH", roomstatus.toString());
+
 
         return root;
     }

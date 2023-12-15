@@ -24,6 +24,10 @@ import android.Manifest;
 
 import com.example.stepappv6.databinding.ActivityMainBinding;
 
+import java.util.Map;
+
+import raspitransfer.dataretriever;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -62,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         if (runningOorLater) {
             getActivityPermission();
         }
+
+
     }
 
     @Override
