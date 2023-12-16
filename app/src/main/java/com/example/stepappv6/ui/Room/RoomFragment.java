@@ -25,7 +25,9 @@ import com.example.stepappv6.databinding.FragmentCameraBinding;
 import com.example.stepappv6.databinding.FragmentRoomBinding;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import raspitransfer.dataretriever;
 
@@ -48,6 +50,10 @@ public class RoomFragment extends Fragment {
     private ArrayList<AutoCompleteTextView> AutoCompleteTextViewArray;
 
     private ArrayList<ImageView> ImageArray;
+
+    String[] cleaningStatus;
+
+    ArrayAdapter<String> arrayAdapter;
 
 
     @Override
@@ -74,8 +80,8 @@ public class RoomFragment extends Fragment {
 
 
         // dirty = 0, cleaning = 1, cleaned = 2, ready = 3
-        String[] status = new String[]{"Dirty", "Cleaning", "Cleaned", "Ready"};
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, status);
+        cleaningStatus = new String[]{"Dirty", "Cleaning", "Cleaned", "Ready"};
+        arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
 
         AutoCompleteTextViewArray = new ArrayList<>();
 
@@ -165,6 +171,13 @@ public class RoomFragment extends Fragment {
 //        Log.d("SSH", "2");
 //        Map<Integer, Integer> roomstatus = obj.parseJsonString(occdata);
 //        Log.d("SSH", roomStatus.toString());
+        roomstatus = new HashMap<>();
+        roomstatus.put(1, 0);
+        roomstatus.put(2, 1);
+        roomstatus.put(3, 2);
+        roomstatus.put(4, 0);
+        roomstatus.put(5, 0);
+        roomstatus.put(6, 0);
 
         // Iterate over roomstatus map to get room we are in
         // get the AutoCompleteTextView of the current room
@@ -174,18 +187,24 @@ public class RoomFragment extends Fragment {
                 currentRoom = key;
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(currentRoom-1);
                 ImageView image = ImageArray.get(currentRoom-1);
-                a.setText(status[1]);
+                a.setText(arrayAdapter.getItem(1));
                 set_image(1, image);
             } else if (roomstatus.get(key) == 2) {
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key-1);
-                a.setText(status[2]);
-            } else {
+                ImageView image = ImageArray.get(key-1);
+                a.setText(arrayAdapter.getItem(2));
+                set_image(2, image);
+            } else if (roomstatus.get(key) == 0) {
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key-1);
-                a.setText(status[0]);
+                ImageView image = ImageArray.get(key-1);
+                a.setText(arrayAdapter.getItem(0));
+                set_image(0, image);
+            } else {
+                continue;
             }
         }
 
-
+//        arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
 
         return root;
     }

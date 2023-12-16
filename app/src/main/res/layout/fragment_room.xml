@@ -461,10 +461,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="5"
+                                android:text="4"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="20sp"/>
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/GuestName4"
@@ -587,10 +587,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="6"
+                                android:text="5"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="20sp"/>
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/GuestName5"
@@ -715,10 +715,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="7"
+                                android:text="6"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="20sp"/>
+                                android:textSize="20sp" />
 
                             <TextView
                                 android:id="@+id/GuestName7"
