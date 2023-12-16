@@ -79,7 +79,10 @@ public class LoginActivity extends AppCompatActivity {
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
-            Toast.makeText(this, "NFC is not supported on this device.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "NFC is not supported on this device.", Toast.LENGTH_SHORT).show();
+//            finish();
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
             finish();
             return;
         }
