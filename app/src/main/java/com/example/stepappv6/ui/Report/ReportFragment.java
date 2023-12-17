@@ -69,7 +69,7 @@ public class ReportFragment extends Fragment {
         stepsInsideRoom = root.findViewById(R.id.stepsInsideRoom);
 //        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
 
-        Cartesian cartesianInside = createColumnChart();
+        Cartesian cartesianInside = createInsideColumnChart();
         stepsInsideRoom.setBackgroundColor("#00000000");
         stepsInsideRoom.setChart(cartesianInside);
 
@@ -77,8 +77,8 @@ public class ReportFragment extends Fragment {
         stepsOutsideRoom = root.findViewById(R.id.stepsOutsideRoom);
 //        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
 
-        Cartesian cartesianOutside = createColumnChart();
-        stepsOutsideRoom.setBackgroundColor("#00ff0000");
+        Cartesian cartesianOutside = createOutsideColumnChart();
+        stepsOutsideRoom.setBackgroundColor("#00000000");
         stepsOutsideRoom.setChart(cartesianOutside);
 
         shareButton = root.findViewById(R.id.sharebtn);
@@ -87,13 +87,16 @@ public class ReportFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Create a bitmap from anychart view
-                Bitmap bitmap = generateBitmap(stepsInsideRoom);
+                Bitmap bitmapInside = generateBitmap(stepsInsideRoom);
+                Bitmap bitmapOutside = generateBitmap(stepsOutsideRoom);
 
                 //Save the bitmap as an image
-                saveImage(bitmap);
+                saveImage(bitmapInside);
+                saveImage(bitmapOutside);
 
                 //Share the bitmap
-                share(bitmap);
+                share(bitmapInside);
+                share(bitmapOutside);
 
 
             }
@@ -132,11 +135,11 @@ public class ReportFragment extends Fragment {
 
         //cartesian.data(new SingleValueDataSet(new Integer[] { random }));
     }
-    public Cartesian createColumnChart(){
+    public Cartesian createInsideColumnChart(){
         //***** Read data from SQLiteDatabase *********/
         // Get the map with hours and number of steps for today
         //  from the database and assign it to variable stepsByHour
-        stepsByHour = StepAppOpenHelper.loadStepsByHour(getContext(), current_time);
+        stepsByHour = StepAppOpenHelper.loadInsideStepsByHour(getContext(), current_time);
 
         // Creating a new map that contains hours of the day from 0 to 23 and
         //  number of steps during each hour set to 0
@@ -164,6 +167,69 @@ public class ReportFragment extends Fragment {
 
         //***** Modify the UI of the chart *********/
        // Change the color of column chart and its border
+        column.fill("#000000");
+        column.stroke("#000000");
+
+
+        // Modifying properties of tooltip
+        column.tooltip()
+                .titleFormat("At hour: {%X}")
+                .format("{%Value} Steps")
+                .anchor(Anchor.RIGHT_BOTTOM);
+
+        // Modify column chart tooltip properties
+        column.tooltip()
+                .position(Position.RIGHT_TOP)
+                .offsetX(0d)
+                .offsetY(5);
+
+        // Modifying properties of cartesian
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+        cartesian.yScale().minimum(0);
+
+
+        //  Modify the UI of the cartesian
+        cartesian.yAxis(0).title("Number of steps");
+        cartesian.xAxis(0).title("Hour");
+        cartesian.background().fill("#00000000");
+        cartesian.animation(true);
+
+        return cartesian;
+    }
+
+    public Cartesian createOutsideColumnChart(){
+        //***** Read data from SQLiteDatabase *********/
+        // Get the map with hours and number of steps for today
+        //  from the database and assign it to variable stepsByHour
+        stepsByHour = StepAppOpenHelper.loadOutsideStepsByHour(getContext(), current_time);
+
+        // Creating a new map that contains hours of the day from 0 to 23 and
+        //  number of steps during each hour set to 0
+        Map<Integer, Integer> graph_map = new TreeMap<>();
+        for(int i =0; i<= 23; i++){
+            graph_map.put(i, 0);
+        }
+
+        //  Replace the number of steps for each hour in graph_map
+        //  with the number of steps read from the database
+        graph_map.putAll(stepsByHour);
+
+        //***** Create column chart using AnyChart library *********/
+        // Create and get the cartesian coordinate system for column chart
+        Cartesian cartesian = AnyChart.column();
+
+        //  Create data entries for x and y axis of the graph
+        List<DataEntry> data = new ArrayList<>();
+
+        for (Map.Entry<Integer,Integer> entry : graph_map.entrySet())
+            data.add(new ValueDataEntry(entry.getKey(), entry.getValue()));
+
+        //  Add the data to column chart and get the columns
+        Column column = cartesian.column(data);
+
+        //***** Modify the UI of the chart *********/
+        // Change the color of column chart and its border
         column.fill("#000000");
         column.stroke("#000000");
 

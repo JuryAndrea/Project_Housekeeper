@@ -82,6 +82,57 @@ public class StepAppOpenHelper extends SQLiteOpenHelper {
         return numSteps;
     }
 
+    public static Integer loadSingleRecordOfStepsInside(Context context, String date){
+        List<String> steps = new LinkedList<String>();
+        // Get the readable database
+        StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
+        SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        String where = StepAppOpenHelper.KEY_DAY + " = ? AND " + StepAppOpenHelper.KEY_INSIDE + " = 1";
+        String [] whereArgs = { date };
+
+        Cursor cursor = database.query(StepAppOpenHelper.TABLE_NAME, null, where, whereArgs, null,
+                null, null );
+
+        // iterate over returned elements
+        cursor.moveToFirst();
+        for (int index=0; index < cursor.getCount(); index++){
+            steps.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        database.close();
+
+        Integer numSteps = steps.size();
+        Log.d("STORED STEPS TODAY: ", String.valueOf(numSteps));
+        return numSteps;
+    }
+
+    public static Integer loadSingleRecordOfStepsOutside(Context context, String date){
+        List<String> steps = new LinkedList<String>();
+        // Get the readable database
+        StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
+        SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        String where = StepAppOpenHelper.KEY_DAY + " = ? AND " + StepAppOpenHelper.KEY_INSIDE + " = 0";
+        String [] whereArgs = { date };
+
+        Cursor cursor = database.query(StepAppOpenHelper.TABLE_NAME, null, where, whereArgs, null,
+                null, null );
+
+        // iterate over returned elements
+        cursor.moveToFirst();
+        for (int index=0; index < cursor.getCount(); index++){
+            steps.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        database.close();
+
+        Integer numSteps = steps.size();
+        Log.d("STORED STEPS TODAY: ", String.valueOf(numSteps));
+        return numSteps;
+    }
+
+
     public static void deleteRecords (Context context) {
         StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -129,6 +180,56 @@ public class StepAppOpenHelper extends SQLiteOpenHelper {
         // 6. Return the map with hours and number of steps
         return map;
     }
+
+    public static Map<Integer, Integer> loadInsideStepsByHour(Context context, String date){
+        Map<Integer, Integer> map = new HashMap<>();
+
+        StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
+        SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        // Note the additional condition "AND inside = 1"
+        Cursor cursor = database.rawQuery("SELECT hour, COUNT(*) FROM num_steps " +
+                "WHERE day = ? AND inside = 1 GROUP BY hour ORDER BY hour ASC", new String[] {date});
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            int hour = cursor.getInt(0);
+            int stepCount = cursor.getInt(1);
+            map.put(hour, stepCount);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        database.close();
+
+        return map;
+    }
+
+    public static Map<Integer, Integer> loadOutsideStepsByHour(Context context, String date){
+        Map<Integer, Integer> map = new HashMap<>();
+
+        StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
+        SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        // Note the additional condition "AND inside = 0"
+        Cursor cursor = database.rawQuery("SELECT hour, COUNT(*) FROM num_steps " +
+                "WHERE day = ? AND inside = 0 GROUP BY hour ORDER BY hour ASC", new String[] {date});
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            int hour = cursor.getInt(0);
+            int stepCount = cursor.getInt(1);
+            map.put(hour, stepCount);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        database.close();
+
+        return map;
+    }
+
+
 
 
     @Override

@@ -39,7 +39,7 @@ public class RoomFragment extends Fragment {
 
     private Button status;
     private int currentRoom;
-    private Map<Integer, Integer> roomstatus;
+    public static Map<Integer, Integer> roomstatus = new HashMap<>();
     private ImageView status_image1;
     private ImageView status_image2;
     private ImageView status_image3;
@@ -59,6 +59,13 @@ public class RoomFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        roomstatus.put(1, 0);
+        roomstatus.put(2, 1);
+        roomstatus.put(3, 2);
+        roomstatus.put(4, 0);
+        roomstatus.put(5, 0);
+        roomstatus.put(6, 1);
 
         binding = FragmentRoomBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -172,13 +179,7 @@ public class RoomFragment extends Fragment {
         Map<Integer, Integer> roomstatuses = obj.parseJsonString(occdata);
         Log.d("SSH", roomstatuses.toString());
 
-        roomstatus = new HashMap<>();
-        roomstatus.put(1, 0);
-        roomstatus.put(2, 1);
-        roomstatus.put(3, 2);
-        roomstatus.put(4, 0);
-        roomstatus.put(5, 0);
-        roomstatus.put(6, 0);
+
 
         //TODO: Fix dropdown menu
 

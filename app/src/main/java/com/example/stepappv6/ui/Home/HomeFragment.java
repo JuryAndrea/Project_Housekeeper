@@ -34,6 +34,7 @@ import com.anychart.enums.HoverMode;
 import com.example.stepappv6.MainActivity;
 import com.example.stepappv6.R;
 import com.example.stepappv6.StepAppOpenHelper;
+import com.example.stepappv6.ui.Room.RoomFragment;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.text.SimpleDateFormat;
@@ -44,6 +45,7 @@ import java.util.TimeZone;
 
 import static com.example.stepappv6.ui.Home.HomeFragment.mNotifyManager;
 import static com.example.stepappv6.ui.Home.HomeFragment.stepsGoal;
+import static com.example.stepappv6.ui.Home.HomeFragment.stepsInsideRoom;
 
 
 public class HomeFragment extends Fragment {
@@ -51,6 +53,8 @@ public class HomeFragment extends Fragment {
 
     // Text view and Progress Bar variables
     public TextView stepsCountTextView;
+    public TextView stepsInsideRoomTextView;
+    public TextView stepsOutsideRoomTextView;
     public ProgressBar stepsCountProgressBar;
     public TextView goalTextView;
 
@@ -64,6 +68,8 @@ public class HomeFragment extends Fragment {
 
     // Num of steps completed
     static int totalStepsCompleted = 0;
+    static int stepsInsideRoom = 0;
+    static int stepsOutsideRoom = 0;
     static int stepsGoal = 10000;
 
     //Create a constant for the notification channel ID
@@ -82,16 +88,23 @@ public class HomeFragment extends Fragment {
         Date cDate = new Date();
         String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
         totalStepsCompleted = StepAppOpenHelper.loadSingleRecord(getContext(), fDate);
+        stepsInsideRoom = StepAppOpenHelper.loadSingleRecordOfStepsInside(getContext(), fDate);
+        stepsOutsideRoom = StepAppOpenHelper.loadSingleRecordOfStepsOutside(getContext(), fDate);
 
+        RoomFragment.roomstatus.put(6, 1);
 
         // Text view & ProgressBar
         goalTextView = (TextView) root.findViewById(R.id.goal);
         stepsCountTextView = (TextView) root.findViewById(R.id.counter);
         stepsCountProgressBar = (ProgressBar) root.findViewById(R.id.progressBar);
+        stepsInsideRoomTextView = (TextView) root.findViewById(R.id.steps_inside_room);
+        stepsOutsideRoomTextView = (TextView) root.findViewById(R.id.steps_outside_room);
         stepsCountProgressBar.setMax(stepsGoal);
 
         // Set the Views with the number of stored steps
         stepsCountTextView.setText(String.valueOf(totalStepsCompleted));
+        stepsInsideRoomTextView.setText(String.valueOf(stepsInsideRoom));
+        stepsOutsideRoomTextView.setText(String.valueOf(stepsOutsideRoom));
         stepsCountProgressBar.setProgress(totalStepsCompleted);
 
 
@@ -110,49 +123,7 @@ public class HomeFragment extends Fragment {
         NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
 
         // Instantiate the StepCounterListener
-        listener = new StepCounterListener(notifyBuilder, database, stepsCountTextView, stepsCountProgressBar);
-
-        // Toggle group button
-//        materialButtonToggleGroup = (MaterialButtonToggleGroup) root.findViewById(R.id.toggleButtonGroup);
-//        materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
-//            @Override
-//            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-//
-//                if (group.getCheckedButtonId() == R.id.start_button) {
-//
-//                    //Place code related to Start button
-//                    Toast.makeText(getContext(), "START", Toast.LENGTH_SHORT).show();
-//
-//                    // Check if the Accelerometer sensor exists
-//                    if (mSensorACC != null) {
-//
-//                        // Register the ACC listener
-//                        mSensorManager.registerListener(listener, mSensorACC, SensorManager.SENSOR_DELAY_NORMAL);
-//                    } else {
-//                        Toast.makeText(getContext(), R.string.acc_sensor_not_available, Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                    // Check if the Step detector sensor exists
-//                    if (mSensorStepDetector != null) {
-//                        // Register the ACC listener
-//                        mSensorManager.registerListener(listener, mSensorStepDetector, SensorManager.SENSOR_DELAY_NORMAL);
-//
-//                    } else {
-//                        Toast.makeText(getContext(), R.string.step_detector_sensor_not_available, Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//
-//                } else if (group.getCheckedButtonId() == R.id.stop_button) {
-//                    //Place code related to Stop button
-//                    Toast.makeText(getContext(), "STOP", Toast.LENGTH_SHORT).show();
-//
-//                    // Unregister the listener
-//                    mSensorManager.unregisterListener(listener);
-//                }
-//            }
-//        });
+        listener = new StepCounterListener(notifyBuilder, database, stepsCountTextView, stepsInsideRoomTextView, stepsOutsideRoomTextView, stepsCountProgressBar);
 
         boolean userInRoom = true; //
 
@@ -251,6 +222,10 @@ class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
 
     //Get the number of stored steps for the current day
     public int mACCStepCounter = HomeFragment.totalStepsCompleted;
+    public int mACCStepsInsideCounter = HomeFragment.stepsInsideRoom;
+    public int mACCStepsOutsideCounter = HomeFragment.stepsOutsideRoom;
+
+
 
     ArrayList<Integer> mACCSeries = new ArrayList<Integer>();
     ArrayList<String> mTimeSeries = new ArrayList<String>();
@@ -263,6 +238,11 @@ class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
 
     // TextView and Progress Bar
     TextView stepsCountTextView;
+
+    TextView stepsInsideRoomTextView;
+    TextView stepsOutsideRoomTextView;
+
+
     ProgressBar stepsCountProgressBar;
 
     // SQLite Database
@@ -276,8 +256,10 @@ class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
     NotificationCompat.Builder notificationBuilder;
 
     // Get the notification builder, database, TextView and ProgressBar as args
-    public StepCounterListener(NotificationCompat.Builder nb, SQLiteDatabase db, TextView tv, ProgressBar pb){
+    public StepCounterListener(NotificationCompat.Builder nb, SQLiteDatabase db, TextView tv, TextView sitv, TextView sotv, ProgressBar pb){
         stepsCountTextView = tv;
+        stepsInsideRoomTextView = sitv;
+        stepsOutsideRoomTextView = sotv;
         stepsCountProgressBar = pb;
         database = db;
         notificationBuilder = nb;
@@ -375,6 +357,12 @@ class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
 
                     // Update the number of steps
                     mACCStepCounter += 1;
+                    if(RoomFragment.roomstatus.get(6) == 1){
+                        mACCStepsInsideCounter += 1;
+                    }
+                    else{
+                        mACCStepsOutsideCounter += 1;
+                    }
 
 
                     if (mACCStepCounter == HomeFragment.stepsGoal) {
@@ -385,12 +373,22 @@ class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
                     // Update the TextView and the ProgressBar
                     stepsCountTextView.setText(String.valueOf(mACCStepCounter));
                     stepsCountProgressBar.setProgress(mACCStepCounter);
+                    stepsInsideRoomTextView.setText(String.valueOf(mACCStepsInsideCounter));
+                    stepsOutsideRoomTextView.setText(String.valueOf(mACCStepsOutsideCounter));
 
                     // Insert the data in the database
                     ContentValues values = new ContentValues();
                     values.put(StepAppOpenHelper.KEY_TIMESTAMP, timePointList.get(i));
                     values.put(StepAppOpenHelper.KEY_DAY, day);
                     values.put(StepAppOpenHelper.KEY_HOUR, hour);
+                    if(RoomFragment.roomstatus.get(6) == 1){
+                        values.put(StepAppOpenHelper.KEY_INSIDE, 1);
+                        Log.d("StepCounterListener", "Step recorded as inside");
+                    } else {
+                        values.put(StepAppOpenHelper.KEY_INSIDE, 0);
+                        Log.d("StepCounterListener", "Step recorded as outside");
+                    }
+
                     database.insert(StepAppOpenHelper.TABLE_NAME, null, values);
                 }
 

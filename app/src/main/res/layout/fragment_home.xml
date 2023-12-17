@@ -6,6 +6,71 @@
     android:layout_height="match_parent"
     tools:context="com.example.stepappv6.ui.Home.HomeFragment">
 
+    <TextView
+        android:id="@+id/steps_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:text="@string/steps"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/counter" />
+
+    <!-- TextView for Steps Inside Room -->
+
+    <!-- TextView for Steps Outside Room -->
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Inside Room: "
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/steps_inside_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Outside Room: "
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/steps_outside_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp" />
+    </LinearLayout>
+
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -45,60 +110,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
-    <TextView
-        android:id="@+id/steps_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:text="@string/steps"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/counter" />
-
-
-<!--    <com.google.android.material.button.MaterialButtonToggleGroup-->
-<!--        android:id="@+id/toggleButtonGroup"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.8"-->
-<!--        app:layout_constraintVertical_bias="0.1"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:singleSelection="true">-->
-<!--        <Button-->
-<!--            android:id="@+id/start_button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="148dp"-->
-<!--            android:backgroundTint="?attr/colorSecondaryContainer"-->
-<!--            android:text="@string/start_text"-->
-<!--            android:textColor="?attr/colorOnSecondaryContainer"-->
-<!--            android:textSize="20sp"-->
-<!--            app:icon="@drawable/baseline_play_circle_filled_24"-->
-<!--            app:iconSize = "32dp"-->
-<!--            app:iconTint="?attr/colorOnSecondaryContainer"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-<!--        <Button-->
-<!--            android:id="@+id/stop_button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="52dp"-->
-<!--            android:backgroundTint="?attr/colorSecondaryContainer"-->
-<!--            android:text="@string/stop_text"-->
-<!--            android:textColor="?attr/colorOnSecondaryContainer"-->
-<!--            android:textSize="20sp"-->
-<!--            app:icon="@drawable/baseline_stop_circle_24"-->
-<!--            app:iconSize = "32dp"-->
-<!--            app:iconTint="?attr/colorOnSecondaryContainer"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-<!--    </com.google.android.material.button.MaterialButtonToggleGroup>-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
