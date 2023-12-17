@@ -68,44 +68,59 @@ public class LoginActivity extends AppCompatActivity {
         skipButton = findViewById(R.id.skip);
         text = findViewById(R.id.text_msg);
 
+        preference = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor = preference.edit();
+
+        //The key "logged" exists in the SharedPreferences (preference.contains("checked") is true), and
+        //The boolean value associated with the key "checked" is true (preference.getBoolean("checked", false)).
+        if (preference.contains("logged") && preference.getBoolean("logged", false)) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                editor.putBoolean("logged", true);
+                editor.apply();
+
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }
         });
 
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        if (nfcAdapter == null) {
+//        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+//        if (nfcAdapter == null) {
 //            Toast.makeText(this, "NFC is not supported on this device.", Toast.LENGTH_SHORT).show();
 //            finish();
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(i);
-            finish();
-            return;
-        }
-
-        if (!nfcAdapter.isEnabled()) {
-            Toast.makeText(this, "NFC is not enabled. Please enable NFC in device settings.", Toast.LENGTH_SHORT).show();
-        }
-
-        handleIntent(getIntent());
+//            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(i);
+//            finish();
+//            return;
+//        }
+//
+//        if (!nfcAdapter.isEnabled()) {
+//            Toast.makeText(this, "NFC is not enabled. Please enable NFC in device settings.", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        handleIntent(getIntent());
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        enableNfcForegroundDispatch();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        enableNfcForegroundDispatch();
+//    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        disableNfcForegroundDispatch();
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        disableNfcForegroundDispatch();
+//    }
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -123,10 +138,14 @@ public class LoginActivity extends AppCompatActivity {
 
             if (tagId.equals("1480275E")){
                 Log.d("JURY", "pluto");
+
+                editor.putBoolean("logged", true);
+                editor.apply();
+
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
-                //TODO: add SharedPreferences to save the login status
+
             }
 
 //            if (tag != null) {

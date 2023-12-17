@@ -16,7 +16,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintVertical_bias="0.164" >
+
+    </com.anychart.AnyChartView>
 
     <com.anychart.AnyChartView
         android:id="@+id/stepsOutsideRoom"
@@ -26,8 +28,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintTop_toBottomOf="@+id/stepsInsideRoom"
+        app:layout_constraintVertical_bias="0.0">
+
+    </com.anychart.AnyChartView>
 
     <TextView
         android:id="@+id/textView5"
@@ -40,6 +44,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/steps_outside_rooms"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="486dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/sharebtn"

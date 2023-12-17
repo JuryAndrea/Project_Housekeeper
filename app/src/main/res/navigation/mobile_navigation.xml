@@ -30,8 +30,13 @@
         tools:layout="@layout/fragment_camera" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_profile"
         android:name="com.example.stepappv6.ui.Profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:label="@string/logout" />
+
 </navigation>

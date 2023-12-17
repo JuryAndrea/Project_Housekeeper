@@ -22,8 +22,13 @@ public class StepAppOpenHelper extends SQLiteOpenHelper {
     public static final String KEY_TIMESTAMP = "timestamp";
     public static final String KEY_DAY = "day";
     public static final String KEY_HOUR = "hour";
+
+    public static final String KEY_INSIDE = "inside";
+//    public static final String CREATE_TABLE_SQL = "CREATE TABLE  " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY, " +
+//            KEY_DAY + " TEXT, " + KEY_HOUR + "  TEXT, " + KEY_TIMESTAMP + "  TEXT);";
+
     public static final String CREATE_TABLE_SQL = "CREATE TABLE  " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY, " +
-            KEY_DAY + " TEXT, " + KEY_HOUR + "  TEXT, " + KEY_TIMESTAMP + "  TEXT);";
+            KEY_DAY + " TEXT, " + KEY_HOUR + "  TEXT, " + KEY_TIMESTAMP + "  TEXT, " + KEY_INSIDE + ");";
 
     public StepAppOpenHelper (Context context)
     {
