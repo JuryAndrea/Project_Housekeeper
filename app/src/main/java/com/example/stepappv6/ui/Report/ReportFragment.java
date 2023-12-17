@@ -15,10 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -50,7 +48,8 @@ import com.example.stepappv6.R;
 public class ReportFragment extends Fragment {
 
 
-    AnyChartView anyChartView;
+    AnyChartView stepsInsideRoom;
+    AnyChartView stepsOutsideRoom;
 
     Button shareButton;
 
@@ -67,14 +66,21 @@ public class ReportFragment extends Fragment {
         binding = FragmentReportBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // Create column chart for steps inside rooms
+        stepsInsideRoom = root.findViewById(R.id.stepsInsideRoom);
+//        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
 
-        // Create column chart
-        anyChartView = root.findViewById(R.id.hourBarChart);
-        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
+        Cartesian cartesianInside = createColumnChart();
+        stepsInsideRoom.setBackgroundColor("#00000000");
+        stepsInsideRoom.setChart(cartesianInside);
 
-        Cartesian cartesian = createColumnChart();
-        anyChartView.setBackgroundColor("#00000000");
-        anyChartView.setChart(cartesian);
+        // Create column chart for steps outside rooms
+        stepsOutsideRoom = root.findViewById(R.id.stepsOutsideRoom);
+//        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
+
+        Cartesian cartesianOutside = createColumnChart();
+        stepsOutsideRoom.setBackgroundColor("#00ff0000");
+        stepsOutsideRoom.setChart(cartesianOutside);
 
         shareButton = root.findViewById(R.id.sharebtn);
 
@@ -82,7 +88,7 @@ public class ReportFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Create a bitmap from anychart view
-                Bitmap bitmap = generateBitmap(anyChartView);
+                Bitmap bitmap = generateBitmap(stepsInsideRoom);
 
                 //Save the bitmap as an image
                 saveImage(bitmap);
@@ -93,9 +99,6 @@ public class ReportFragment extends Fragment {
 
             }
         });
-
-
-
 
         return root;
     }
@@ -162,8 +165,8 @@ public class ReportFragment extends Fragment {
 
         //***** Modify the UI of the chart *********/
        // Change the color of column chart and its border
-        column.fill("#1EB980");
-        column.stroke("#1EB980");
+        column.fill("#000000");
+        column.stroke("#000000");
 
 
         // Modifying properties of tooltip

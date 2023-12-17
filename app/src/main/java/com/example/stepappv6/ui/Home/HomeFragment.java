@@ -63,8 +63,8 @@ public class HomeFragment extends Fragment {
     private Sensor mSensorStepDetector;
 
     // Num of steps completed
-    static int stepsCompleted = 0;
-    static int stepsGoal = 20;
+    static int totalStepsCompleted = 0;
+    static int stepsGoal = 10000;
 
     //Create a constant for the notification channel ID
     public String PRIMARY_CHANNEL_ID = "primary_notification_channel";
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         // Get the number of steps stored in the current date
         Date cDate = new Date();
         String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-        stepsCompleted = StepAppOpenHelper.loadSingleRecord(getContext(), fDate);
+        totalStepsCompleted = StepAppOpenHelper.loadSingleRecord(getContext(), fDate);
 
 
         // Text view & ProgressBar
@@ -91,8 +91,8 @@ public class HomeFragment extends Fragment {
         stepsCountProgressBar.setMax(stepsGoal);
 
         // Set the Views with the number of stored steps
-        stepsCountTextView.setText(String.valueOf(stepsCompleted));
-        stepsCountProgressBar.setProgress(stepsCompleted);
+        stepsCountTextView.setText(String.valueOf(totalStepsCompleted));
+        stepsCountProgressBar.setProgress(totalStepsCompleted);
 
 
         //  Get an instance of the sensor manager.
@@ -107,52 +107,80 @@ public class HomeFragment extends Fragment {
         SQLiteDatabase database = databaseOpenHelper.getWritableDatabase();
 
         // Get the Builder object
-       NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
+        NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
 
         // Instantiate the StepCounterListener
         listener = new StepCounterListener(notifyBuilder, database, stepsCountTextView, stepsCountProgressBar);
 
         // Toggle group button
-        materialButtonToggleGroup = (MaterialButtonToggleGroup) root.findViewById(R.id.toggleButtonGroup);
-        materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
-            @Override
-            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+//        materialButtonToggleGroup = (MaterialButtonToggleGroup) root.findViewById(R.id.toggleButtonGroup);
+//        materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+//            @Override
+//            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+//
+//                if (group.getCheckedButtonId() == R.id.start_button) {
+//
+//                    //Place code related to Start button
+//                    Toast.makeText(getContext(), "START", Toast.LENGTH_SHORT).show();
+//
+//                    // Check if the Accelerometer sensor exists
+//                    if (mSensorACC != null) {
+//
+//                        // Register the ACC listener
+//                        mSensorManager.registerListener(listener, mSensorACC, SensorManager.SENSOR_DELAY_NORMAL);
+//                    } else {
+//                        Toast.makeText(getContext(), R.string.acc_sensor_not_available, Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                    // Check if the Step detector sensor exists
+//                    if (mSensorStepDetector != null) {
+//                        // Register the ACC listener
+//                        mSensorManager.registerListener(listener, mSensorStepDetector, SensorManager.SENSOR_DELAY_NORMAL);
+//
+//                    } else {
+//                        Toast.makeText(getContext(), R.string.step_detector_sensor_not_available, Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//
+//                } else if (group.getCheckedButtonId() == R.id.stop_button) {
+//                    //Place code related to Stop button
+//                    Toast.makeText(getContext(), "STOP", Toast.LENGTH_SHORT).show();
+//
+//                    // Unregister the listener
+//                    mSensorManager.unregisterListener(listener);
+//                }
+//            }
+//        });
 
-                if (group.getCheckedButtonId() == R.id.start_button) {
+        boolean userInRoom = true; //
 
-                    //Place code related to Start button
-                    Toast.makeText(getContext(), "START", Toast.LENGTH_SHORT).show();
+        if(userInRoom) {
+            //Place code related to Start button
+            Toast.makeText(getContext(), "START", Toast.LENGTH_SHORT).show();
 
-                    // Check if the Accelerometer sensor exists
-                    if (mSensorACC != null) {
+            // Check if the Accelerometer sensor exists
+            if (mSensorACC != null) {
 
-                        // Register the ACC listener
-                        mSensorManager.registerListener(listener, mSensorACC, SensorManager.SENSOR_DELAY_NORMAL);
-                    } else {
-                        Toast.makeText(getContext(), R.string.acc_sensor_not_available, Toast.LENGTH_SHORT).show();
+                // Register the ACC listener
+                mSensorManager.registerListener(listener, mSensorACC, SensorManager.SENSOR_DELAY_NORMAL);
+            } else {
+                Toast.makeText(getContext(), R.string.acc_sensor_not_available, Toast.LENGTH_SHORT).show();
 
-                    }
-
-                    // Check if the Step detector sensor exists
-                    if (mSensorStepDetector != null) {
-                        // Register the ACC listener
-                        mSensorManager.registerListener(listener, mSensorStepDetector, SensorManager.SENSOR_DELAY_NORMAL);
-
-                    } else {
-                        Toast.makeText(getContext(), R.string.step_detector_sensor_not_available, Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-                } else if (group.getCheckedButtonId() == R.id.stop_button) {
-                    //Place code related to Stop button
-                    Toast.makeText(getContext(), "STOP", Toast.LENGTH_SHORT).show();
-
-                    // Unregister the listener
-                    mSensorManager.unregisterListener(listener);
-                }
             }
-        });
+
+            // Check if the Step detector sensor exists
+            if (mSensorStepDetector != null) {
+                // Register the ACC listener
+                mSensorManager.registerListener(listener, mSensorStepDetector, SensorManager.SENSOR_DELAY_NORMAL);
+
+            } else {
+                Toast.makeText(getContext(), R.string.step_detector_sensor_not_available, Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
 
         // Create notification channel by Calling createNotificationChannel()
         createNotificationChannel();
@@ -216,13 +244,13 @@ public class HomeFragment extends Fragment {
 
 
 // Sensor event listener
-class StepCounterListener<stepsCompleted> implements SensorEventListener {
+class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
 
     // Constant for the notification ID:
     public static int NOTIFICATION_ID =0 ;
 
     //Get the number of stored steps for the current day
-    public int mACCStepCounter = HomeFragment.stepsCompleted;
+    public int mACCStepCounter = HomeFragment.totalStepsCompleted;
 
     ArrayList<Integer> mACCSeries = new ArrayList<Integer>();
     ArrayList<String> mTimeSeries = new ArrayList<String>();
