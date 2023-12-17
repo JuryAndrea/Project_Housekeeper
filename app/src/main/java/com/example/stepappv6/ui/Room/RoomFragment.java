@@ -165,12 +165,13 @@ public class RoomFragment extends Fragment {
 
 
 //      HERE WE GET THE ROOM STATUS UPDATE
-//        dataretriever obj = new dataretriever(6);
-//        Log.d("SSH", "1");
-//        String occdata = obj.retrieve(getContext());
-//        Log.d("SSH", "2");
-//        Map<Integer, Integer> roomstatus = obj.parseJsonString(occdata);
-//        Log.d("SSH", roomStatus.toString());
+        dataretriever obj = new dataretriever(6);
+        Log.d("SSH", "1");
+        String occdata = obj.retrieve(getContext());
+        Log.d("SSH", "2");
+        Map<Integer, Integer> roomstatuses = obj.parseJsonString(occdata);
+        Log.d("SSH", roomstatuses.toString());
+
         roomstatus = new HashMap<>();
         roomstatus.put(1, 0);
         roomstatus.put(2, 1);

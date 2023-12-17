@@ -92,35 +92,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-//        if (nfcAdapter == null) {
-//            Toast.makeText(this, "NFC is not supported on this device.", Toast.LENGTH_SHORT).show();
-//            finish();
-//            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-//            startActivity(i);
-//            finish();
-//            return;
-//        }
-//
-//        if (!nfcAdapter.isEnabled()) {
-//            Toast.makeText(this, "NFC is not enabled. Please enable NFC in device settings.", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        handleIntent(getIntent());
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        if (nfcAdapter == null) {
+            Toast.makeText(this, "NFC is not supported on this device.", Toast.LENGTH_SHORT).show();
+            finish();
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+            return;
+        }
+
+        if (!nfcAdapter.isEnabled()) {
+            Toast.makeText(this, "NFC is not enabled. Please enable NFC in device settings.", Toast.LENGTH_SHORT).show();
+        }
+
+        handleIntent(getIntent());
     }
 
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        enableNfcForegroundDispatch();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        enableNfcForegroundDispatch();
+    }
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        disableNfcForegroundDispatch();
-//    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        disableNfcForegroundDispatch();
+    }
 
     @Override
     protected void onNewIntent(Intent intent) {
