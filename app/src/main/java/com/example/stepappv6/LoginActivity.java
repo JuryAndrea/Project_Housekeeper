@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         skipButton = findViewById(R.id.skip);
         text = findViewById(R.id.text_msg);
 
-        preference = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        preference = getSharedPreferences("Login", MODE_PRIVATE);
         editor = preference.edit();
 
         //The key "logged" exists in the SharedPreferences (preference.contains("checked") is true), and
