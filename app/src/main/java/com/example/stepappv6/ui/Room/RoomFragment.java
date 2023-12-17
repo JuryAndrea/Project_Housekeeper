@@ -185,21 +185,36 @@ public class RoomFragment extends Fragment {
         // get the AutoCompleteTextView of the current room
         // assuming 0=dirty (default), 1=cleaning, 2=cleaned
         for (Integer key : roomstatus.keySet()) {
-            if(roomstatus.get(key) == 1) {
+            if(roomstatus.get(key) == 1) { //Cleaning
                 currentRoom = key;
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(currentRoom-1);
                 ImageView image = ImageArray.get(currentRoom-1);
-                a.setText(arrayAdapter.getItem(1));
+
+                String selectedText = cleaningStatus[1];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
                 set_image(1, image);
-            } else if (roomstatus.get(key) == 2) {
+            } else if (roomstatus.get(key) == 2) { //Cleaned
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key-1);
                 ImageView image = ImageArray.get(key-1);
-                a.setText(arrayAdapter.getItem(2));
+
+                String selectedText = cleaningStatus[2];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
                 set_image(2, image);
-            } else if (roomstatus.get(key) == 0) {
+            } else if (roomstatus.get(key) == 0) { //Dirty
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key-1);
                 ImageView image = ImageArray.get(key-1);
-                a.setText(arrayAdapter.getItem(0));
+
+                String selectedText = cleaningStatus[0];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
                 set_image(0, image);
             } else {
                 continue;
