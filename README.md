@@ -23,7 +23,9 @@ Furthermore, once the repository has been cloned, pleas ensure that a phone with
   1. First, build and laucnh the app on the device. 
   2. Then, use the NFC tag provided by the team to log in into the application. 
   3. Once launched, the stepper app is automatically activated.
-  4. The entire interface is subsequently free to use. 
+  4. The entire interface is subsequently free to use.
+
+PLEASE, FOR DEMO REFER TO THE VIDEO FOLDER.
 
 ## Features
 
