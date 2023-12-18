@@ -9,12 +9,12 @@ Moreover, there is very little statistical data driven decision making processes
 `git clone https://github.com/JuryAndrea/Project_Housekeeper.git`
 
 ## Usage
-
-Step 1.
-Step 2. 
-Step 3.
-Step 4.
-Step 5.
-Step 6.
+Steps:
+  1.
+  2. 
+  3.
+  4.
+  5.
+  6.
 
 ## Features
