@@ -70,13 +70,14 @@ public class ReportFragment extends Fragment {
         // Create column chart for steps inside rooms
         stepsInsideRoom = root.findViewById(R.id.stepsInsideRoom);
 
+        // Create column chart for steps inside rooms
         Cartesian cartesian = createColumnChart();
         stepsInsideRoom.setBackgroundColor("#FBFDF8");
         stepsInsideRoom.setChart(cartesian);
 
 
+        // Create the button to share the chart
         shareButton = root.findViewById(R.id.sharebtn);
-
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

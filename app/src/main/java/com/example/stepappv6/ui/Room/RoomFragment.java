@@ -56,7 +56,7 @@ public class RoomFragment extends Fragment {
 //        roomstatus.put(5, 0);
 //        roomstatus.put(6, 1);
 
-
+        // Get the data from SSH connection
         dataretriever obj = new dataretriever(6);
         Log.d("SSH", "1");
         String occdata = obj.retrieve(getContext());
@@ -122,18 +122,24 @@ public class RoomFragment extends Fragment {
 
         // Iterate over roomstatus map to get room we are in
         // get the AutoCompleteTextView of the current room
-        // assuming 0=dirty (default), 1=cleaning, 2=cleaned
         for (Integer key : roomstatus.keySet()) {
             if (roomstatus.get(key) == 0) { //Dirty
+                // Set the current room to the dirty room
                 currentRoom = key;
+                // Get the AutoCompleteTextView of the current room
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                // Get the ImageView of the current room
                 ImageView image = ImageArray.get(key - 1);
 
+                // Set the text of the AutoCompleteTextView
                 String selectedText = cleaningStatus[0];
                 a.setText(selectedText);
+
+                // Set the adapter of the AutoCompleteTextView
                 arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
                 a.setAdapter(arrayAdapter);
 
+                // Set the image of the ImageView
                 set_image(0, image);
 
             } else if (roomstatus.get(key) == 1) { //Cleaning
@@ -176,42 +182,46 @@ public class RoomFragment extends Fragment {
         return root;
     }
 
+    // Function to choose the status of the room
     private int choose_status(int pos){
-        if (pos == 0)
+        if (pos == 0) //Dirty
             return 0;
-        else if (pos == 1)
+        else if (pos == 1) //Cleaning
             return 1;
-        else if (pos == 2)
+        else if (pos == 2) //Cleaned
             return 2;
         else
-            return 3;
+            return 3; //Ready
     }
 
+    // Function to set the image of the room
     private void set_image(int pos, ImageView status_image){
 
-        if (pos == 0)
+        if (pos == 0) //Dirty
             status_image.setImageResource(R.drawable.dirty_50);
-        else if (pos == 1)
+        else if (pos == 1) //Cleaning
             status_image.setImageResource(R.drawable.cleaning_64);
-        else if (pos == 2)
+        else if (pos == 2) //Cleaned
             status_image.setImageResource(R.drawable.cleaned_64);
-        else
+        else //Ready
             status_image.setImageResource(R.drawable.ready_50);
 
     }
 
+    // Function to set the image of the room by hand
     private void set_image_by_hand(int pos, ImageView status_image){
-        if (pos == 0)
+        if (pos == 0) //Dirty
             status_image.setImageResource(R.drawable.dirty_50);
-        else if (pos == 1)
+        else if (pos == 1) //Cleaning
             status_image.setImageResource(R.drawable.cleaning_64);
-        else if (pos == 2)
+        else if (pos == 2) //Cleaned
             status_image.setImageResource(R.drawable.cleaned_64);
-        else
+        else //Ready
             status_image.setImageResource(R.drawable.ready_50);
     }
 
 
+    // Function to set the OnItemClickListener of the AutoCompleteTextView
     private void setOnItemClickListener(AutoCompleteTextView autoCompleteTextView, ImageView status_image){
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -222,6 +232,7 @@ public class RoomFragment extends Fragment {
         });
     }
 
+    // OnResume function to update the data when we come back to the fragment
     @Override
     public void onResume() {
         super.onResume();

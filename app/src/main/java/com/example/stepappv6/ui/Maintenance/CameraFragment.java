@@ -55,6 +55,7 @@ public class CameraFragment extends Fragment {
 
         roomInputLayout = root.findViewById(R.id.select_room);
 
+        // AutoCompleteTextView for rooms, objects and priority
         String[] rooms = new String[]{"1", "2", "3", "5", "6"};
         String[] objects = new String[]{"Bed", "TV", "Curtains", "Lamp", "Night Stands"};
         String[] priority = new String[]{"High", "Medium", "Low"};
@@ -73,7 +74,7 @@ public class CameraFragment extends Fragment {
         AutoCompleteTextView autoCompleteTextView3 = root.findViewById(R.id.filled_3);
         autoCompleteTextView3.setAdapter(arrayAdapter_priority);
 
-
+        // Button to take picture
         btnpicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +83,7 @@ public class CameraFragment extends Fragment {
             }
         });
 
+        // Button to send the maintenance request
         btnsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +115,7 @@ public class CameraFragment extends Fragment {
         return root;
     }
 
+    // Method to take picture
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == REQUEST_CODE && resultCode == RESULT_OK) {

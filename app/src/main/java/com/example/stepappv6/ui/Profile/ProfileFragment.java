@@ -58,18 +58,20 @@ public class ProfileFragment extends Fragment {
                 .enabled(true)
                 .stroke();
 
-
+        // Retrieve data from the SSH connection
         dataretriever obj = new dataretriever(6);
         Log.d("SSH", "1");
         String occdata = obj.retrieve(getContext());
         Log.d("SSH", "2");
         Map<Integer, Integer> roomstatuses = obj.parseJsonString(occdata);
 
+        // Count the number of rooms in each state
         int dirty = 0;
         int cleaning = 0;
         int cleaned = 0;
         int ready = 0;
 
+        // Loop through the map and count the number of rooms in each state
         for (Integer key : roomstatuses.keySet()) {
             int value = roomstatuses.get(key);
 
@@ -103,7 +105,7 @@ public class ProfileFragment extends Fragment {
         pie.data(data);
         anyChartView.setChart(pie);
 
-        // Set the TextView based dirty + cleaning over total rooms
+        // Calculate the percentage of rooms that are cleaned or ready
         double totalRooms = dirty + cleaning + cleaned + ready;
         double progress = (1 - ((dirty + cleaning) / totalRooms)) * 100;
         textViewGoal.setText("You have completed " + (int)progress + "% already today! Keep it up!");
