@@ -106,7 +106,7 @@ public class ProfileFragment extends Fragment {
         // Set the TextView based dirty + cleaning over total rooms
         double totalRooms = dirty + cleaning + cleaned + ready;
         double progress = (1 - ((dirty + cleaning) / totalRooms)) * 100;
-        textViewGoal.setText("You have completed " + progress + "% already today! Keep it up!");
+        textViewGoal.setText("You have completed " + (int)progress + "% already today! Keep it up!");
 
         return root;
     }
