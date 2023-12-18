@@ -147,18 +147,6 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
 
             }
-
-//            if (tag != null) {
-//                Log.d("JURY", "Tag ID: " + Arrays.toString(tag.getId()));
-//                NdefMessage ndefMessage = readNdefMessage(tag);
-//                Log.d("JURY", "NDEF Message: " + ndefMessage);
-//                if (ndefMessage != null) {
-//                    String tagData = new String(ndefMessage.getRecords()[0].getPayload());
-//                    text.setText("JURY " + tagData);
-//                } else {
-//                    Log.e("JURY", "Failed to read NDEF message from tag.");
-//                }
-//            }
         }
     }
 
@@ -169,28 +157,6 @@ public class LoginActivity extends AppCompatActivity {
         }
         return sb.toString();
     }
-
-//    private NdefMessage readNdefMessage(Tag tag) {
-//        Ndef ndef = Ndef.get(tag);
-//        if (ndef != null) {
-//            try {
-//                ndef.connect();
-//                return ndef.getNdefMessage();
-//            } catch (IOException e) {
-//                Log.e("JURY", "Error reading NDEF message", e);
-//            } catch (FormatException e) {
-//                Log.e("JURY", "Error formatting NDEF message", e);
-//                throw new RuntimeException(e);
-//            } finally {
-//                try {
-//                    ndef.close();
-//                } catch (IOException e) {
-//                    Log.e("JURY", "Error closing NDEF connection", e);
-//                }
-//            }
-//        }
-//        return null;
-//    }
 
     private void enableNfcForegroundDispatch() {
         Intent intent = new Intent(this, getClass());

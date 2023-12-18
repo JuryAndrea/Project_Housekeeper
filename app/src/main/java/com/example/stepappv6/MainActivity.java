@@ -70,17 +70,22 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
+
             if (itemId == R.id.nav_logout) {
-                Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                // Handle logout
                 preference = getSharedPreferences("Login", MODE_PRIVATE);
                 editor = preference.edit();
                 editor.putBoolean("logged", false);
                 editor.apply();
+
                 drawer.closeDrawer(GravityCompat.START);
+
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
+
                 return true;
+
             } else {
                 // Handle other item clicks
                 drawer.closeDrawer(GravityCompat.START);
@@ -88,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                         || super.onOptionsItemSelected(item);
             }
 
-//            return true;
         });
 
         getWriteExternalStorage();
