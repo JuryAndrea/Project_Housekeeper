@@ -1,0 +1,9 @@
+- camera_fragment_demo:
+- homefragment_demo:
+- login_with_false_nfc_tag_and_correct_one:
+- logout:
+- profile_fragment_demo:
+- raspberry_pi_change_of_room_status_room_6:
+- report_fragment_demo:
+- rooms_fragment:
+
