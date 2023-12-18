@@ -6,48 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.stepappv6.ui.Report.ReportFragment">
 
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView5"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="80dp"-->
-<!--            android:text="@string/steps_inside_rooms"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="#000000"-->
-<!--            android:textSize="24sp" />-->
-
-<!--        <com.anychart.AnyChartView-->
-<!--            android:id="@+id/stepsInsideRoom"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="245dp"-->
-<!--            android:visibility="visible"-->
-<!--            tools:visibility="visible">-->
-
-<!--        </com.anychart.AnyChartView>-->
-
-<!--        <Button-->
-<!--            android:id="@+id/sharebtn"-->
-<!--            android:layout_width="152dp"-->
-<!--            android:layout_height="64dp"-->
-<!--            android:layout_marginBottom="227dp"-->
-<!--            android:backgroundTint="?attr/colorSecondaryContainer"-->
-<!--            android:text="@string/share"-->
-<!--            android:textColor="?attr/colorOnSecondaryContainer"-->
-<!--            android:textSize="20sp"-->
-<!--            app:icon="@drawable/baseline_share_24"-->
-<!--            app:iconSize="32dp"-->
-<!--            app:iconTint="?attr/colorOnSecondaryContainer"-->
-<!--            tools:ignore="NotSibling" />-->
-
-<!--    </LinearLayout>-->
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
