@@ -116,59 +116,12 @@ public class RoomFragment extends Fragment {
         autoCompleteTextView5.setAdapter(arrayAdapter);
         AutoCompleteTextViewArray.add(autoCompleteTextView6);
 
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getContext(), autoCompleteTextView.getText().toString() + " pos " + i, Toast.LENGTH_SHORT).show();
-                int pos = choose_status(i);
-                set_image(pos, status_image1);
-            }
-        });
-
-        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getContext(), autoCompleteTextView2.getText().toString(), Toast.LENGTH_SHORT).show();
-                int pos = choose_status(i);
-                set_image(pos, status_image2);
-            }
-        });
-
-        autoCompleteTextView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getContext(), autoCompleteTextView3.getText().toString(), Toast.LENGTH_SHORT).show();
-                int pos = choose_status(i);
-                set_image(pos, status_image3);
-            }
-        });
-
-        autoCompleteTextView4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getContext(), autoCompleteTextView4.getText().toString(), Toast.LENGTH_SHORT).show();
-                int pos = choose_status(i);
-                set_image(pos, status_image4);
-            }
-        });
-
-        autoCompleteTextView5.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getContext(), autoCompleteTextView5.getText().toString(), Toast.LENGTH_SHORT).show();
-                int pos = choose_status(i);
-                set_image(pos, status_image5);
-            }
-        });
-
-        autoCompleteTextView6.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getContext(), autoCompleteTextView5.getText().toString(), Toast.LENGTH_SHORT).show();
-                int pos = choose_status(i);
-                set_image(pos, status_image6);
-            }
-        });
+        setOnItemClickListener(autoCompleteTextView, status_image1);
+        setOnItemClickListener(autoCompleteTextView2, status_image2);
+        setOnItemClickListener(autoCompleteTextView3, status_image3);
+        setOnItemClickListener(autoCompleteTextView4, status_image4);
+        setOnItemClickListener(autoCompleteTextView5, status_image5);
+        setOnItemClickListener(autoCompleteTextView6, status_image6);
 
 
 //      HERE WE GET THE ROOM STATUS UPDATE
@@ -223,8 +176,6 @@ public class RoomFragment extends Fragment {
             }
         }
 
-//        arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
-
         return root;
     }
 
@@ -240,15 +191,6 @@ public class RoomFragment extends Fragment {
     }
 
     private void set_image(int pos, ImageView status_image){
-//        if (pos == 0)
-//            status_image.setImageResource(R.drawable.dirty_50);
-//        else if (pos == 1)
-//            status_image.setImageResource(R.drawable.cleaning_64);
-//        else if (pos == 2)
-//            status_image.setImageResource(R.drawable.cleaned_64);
-//        else
-//            status_image.setImageResource(R.drawable.ready_50);
-
         if(pos == 1) {
             status_image.setImageResource(R.drawable.cleaning_64);
         } else if (pos == 2) {
@@ -258,5 +200,26 @@ public class RoomFragment extends Fragment {
         }
     }
 
+    private void set_image_by_hand(int pos, ImageView status_image){
+        if (pos == 0)
+            status_image.setImageResource(R.drawable.dirty_50);
+        else if (pos == 1)
+            status_image.setImageResource(R.drawable.cleaning_64);
+        else if (pos == 2)
+            status_image.setImageResource(R.drawable.cleaned_64);
+        else
+            status_image.setImageResource(R.drawable.ready_50);
+    }
+
+
+    private void setOnItemClickListener(AutoCompleteTextView autoCompleteTextView, ImageView status_image){
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int pos = choose_status(i);
+                set_image_by_hand(pos, status_image);
+            }
+        });
+    }
 
 }
