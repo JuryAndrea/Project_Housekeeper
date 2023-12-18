@@ -6,13 +6,9 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
-import com.example.stepappv6.R;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -28,10 +24,6 @@ import android.Manifest;
 
 import com.example.stepappv6.databinding.ActivityMainBinding;
 
-import java.util.Map;
-
-import raspitransfer.dataretriever;
-
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -44,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences preference;
     private SharedPreferences.Editor editor;
-
-    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +60,22 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
+
             if (itemId == R.id.nav_logout) {
-                Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                // Handle logout
                 preference = getSharedPreferences("Login", MODE_PRIVATE);
                 editor = preference.edit();
                 editor.putBoolean("logged", false);
                 editor.apply();
+
                 drawer.closeDrawer(GravityCompat.START);
+
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
+
                 return true;
+
             } else {
                 // Handle other item clicks
                 drawer.closeDrawer(GravityCompat.START);
@@ -88,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                         || super.onOptionsItemSelected(item);
             }
 
-//            return true;
         });
 
         getWriteExternalStorage();

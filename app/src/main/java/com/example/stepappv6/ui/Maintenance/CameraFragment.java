@@ -3,7 +3,6 @@ package com.example.stepappv6.ui.Maintenance;
 import static android.app.Activity.RESULT_OK;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
@@ -11,11 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -25,7 +22,6 @@ import android.widget.Toast;
 
 import com.example.stepappv6.R;
 import com.example.stepappv6.databinding.FragmentCameraBinding;
-import com.example.stepappv6.databinding.FragmentReportBinding;
 import com.google.android.material.textfield.TextInputLayout;
 
 
@@ -58,8 +54,6 @@ public class CameraFragment extends Fragment {
         description = root.findViewById(R.id.description);
 
         roomInputLayout = root.findViewById(R.id.select_room);
-
-        // TODO: refactor the code
 
         String[] rooms = new String[]{"1", "2", "3", "5", "6"};
         String[] objects = new String[]{"Bed", "TV", "Curtains", "Lamp", "Night Stands"};
