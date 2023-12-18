@@ -6,13 +6,9 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
-import com.example.stepappv6.R;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -27,10 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 
 import com.example.stepappv6.databinding.ActivityMainBinding;
-
-import java.util.Map;
-
-import raspitransfer.dataretriever;
 
 public class MainActivity extends AppCompatActivity {
 

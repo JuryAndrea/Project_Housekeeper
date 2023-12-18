@@ -1,13 +1,11 @@
 package com.example.stepappv6.ui.Room;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,19 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.example.stepappv6.LoginActivity;
 import com.example.stepappv6.R;
-import com.example.stepappv6.databinding.FragmentCameraBinding;
 import com.example.stepappv6.databinding.FragmentRoomBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import raspitransfer.dataretriever;
 

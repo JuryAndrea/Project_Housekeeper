@@ -1,21 +1,17 @@
 package com.example.stepappv6.ui.Home;
 
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -30,12 +26,10 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
-import com.anychart.enums.HoverMode;
 import com.example.stepappv6.MainActivity;
 import com.example.stepappv6.R;
 import com.example.stepappv6.StepAppOpenHelper;
 import com.example.stepappv6.ui.Room.RoomFragment;
-import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,12 +38,9 @@ import java.util.List;
 import java.util.TimeZone;
 
 import static com.example.stepappv6.ui.Home.HomeFragment.mNotifyManager;
-import static com.example.stepappv6.ui.Home.HomeFragment.stepsGoal;
-import static com.example.stepappv6.ui.Home.HomeFragment.stepsInsideRoom;
 
 
 public class HomeFragment extends Fragment {
-    MaterialButtonToggleGroup materialButtonToggleGroup;
 
     // Text view and Progress Bar variables
     public TextView stepsCountTextView;
