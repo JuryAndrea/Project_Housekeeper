@@ -9,12 +9,29 @@ Moreover, there is very little statistical data driven decision making processes
 `git clone https://github.com/JuryAndrea/Project_Housekeeper.git`
 
 ## Usage
-Steps:
-  1.
-  2. 
-  3.
-  4.
-  5.
-  6.
+
+PLEASE NOTE THAT THE PROJECT IS NOT RUNNABLE WITHOUT THE RASPBERRY PI DEVICE AND OUR NFC TAG(s).
+
+In additon, please make sure for the SSH connection between Android phone and RaspberryPi to work, they must be conencted to the same WIFI network. 
+
+To run the project succesfully, please clone the project repository. 
+
+Then launch on the raspberry pi the file `housekeeper.py`. Here, please ensure that the wiring of the RaspberryPi with the breadboard connecting to the NFC reader is properly set up. 
+
+Furthermore, once the repository has been cloned, pleas ensure that a phone with API 33 and Android Version 12 or higher. 
+
+  1. First, build and laucnh the app on the device. 
+  2. Then, use the NFC tag provided by the team to log in into the application. 
+  3. Once launched, the stepper app is automatically activated.
+  4. The entire interface is subsequently free to use. 
 
 ## Features
+
+- LoginActivity: Use NFC tag to login into the app. 
+- HomeFragement: Depicts in a progress bar the steps for a given employee inside and oustide the rooms.  
+- RoomsFragment: Shows all the rooms assigned to an invidiual employee with the repective status.  
+- CameraFragment: Enables report damage of furniture inside the room through the use of camera. 
+- ReportFragement: Shows in a bar chart the comparison by hours between steps inside and outside of rooms. 
+- ProfileFragment: Shows the pie chart of the overall progress of an employee. 
+- Logout button: Logs the employee out. 
+
