@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,11 +28,15 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
 
+    private TextView textViewGoal;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        textViewGoal = root.findViewById(R.id.textView_goal);
 
         // Set up the pie chart
         AnyChartView anyChartView = root.findViewById(R.id.anyChartView);
@@ -88,8 +93,6 @@ public class ProfileFragment extends Fragment {
         Log.d("SSH", String.valueOf(ready));
 
 
-
-
         // Sample data for the pie chart
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("Dirty", dirty));
@@ -99,6 +102,11 @@ public class ProfileFragment extends Fragment {
 
         pie.data(data);
         anyChartView.setChart(pie);
+
+        // Set the TextView based dirty + cleaning over total rooms
+        double totalRooms = dirty + cleaning + cleaned + ready;
+        double progress = (1 - ((dirty + cleaning) / totalRooms)) * 100;
+        textViewGoal.setText("You have completed " + progress + "% already today! Keep it up!");
 
         return root;
     }
