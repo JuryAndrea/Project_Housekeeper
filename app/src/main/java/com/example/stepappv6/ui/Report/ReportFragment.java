@@ -57,6 +57,9 @@ public class ReportFragment extends Fragment {
 
     public Map<Integer, Integer> stepsByHour = null;
 
+    public Map<Integer, Integer> stepsInsideByHour = null;
+    public Map<Integer, Integer> stepsOutsideByHour = null;
+
     private FragmentReportBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -69,17 +72,17 @@ public class ReportFragment extends Fragment {
         stepsInsideRoom = root.findViewById(R.id.stepsInsideRoom);
 //        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
 
-        Cartesian cartesianInside = createInsideColumnChart();
+        Cartesian cartesian = createColumnChart();
         stepsInsideRoom.setBackgroundColor("#00000000");
-        stepsInsideRoom.setChart(cartesianInside);
+        stepsInsideRoom.setChart(cartesian);
 
-        // Create column chart for steps outside rooms
-        stepsOutsideRoom = root.findViewById(R.id.stepsOutsideRoom);
-//        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
-
-        Cartesian cartesianOutside = createOutsideColumnChart();
-        stepsOutsideRoom.setBackgroundColor("#00000000");
-        stepsOutsideRoom.setChart(cartesianOutside);
+//        // Create column chart for steps outside rooms
+//        stepsOutsideRoom = root.findViewById(R.id.stepsOutsideRoom);
+////        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
+//
+//        Cartesian cartesianOutside = createOutsideColumnChart();
+//        stepsOutsideRoom.setBackgroundColor("#00000000");
+//        stepsOutsideRoom.setChart(cartesianOutside);
 
         shareButton = root.findViewById(R.id.sharebtn);
 
@@ -134,6 +137,72 @@ public class ReportFragment extends Fragment {
             data.add(new ValueDataEntry(entry.getKey(), entry.getValue()));
 
         //cartesian.data(new SingleValueDataSet(new Integer[] { random }));
+    }
+
+    public Cartesian createColumnChart(){
+        //***** Read data from SQLiteDatabase *********/
+        // Get the map with hours and number of steps for today
+        //  from the database and assign it to variable stepsByHour
+        stepsInsideByHour = StepAppOpenHelper.loadInsideStepsByHour(getContext(), current_time);
+        stepsOutsideByHour = StepAppOpenHelper.loadOutsideStepsByHour(getContext(), current_time);
+
+        Log.d("INSIDE STEPS TODAY: ", String.valueOf(stepsInsideByHour));
+        Log.d("OUTSIDE STEPS TODAY: ", String.valueOf(stepsOutsideByHour));
+
+        // Create a new map that contains hours of the day from 0 to 23
+        Map<Integer, Integer> graphMapInside = new TreeMap<>();
+        Map<Integer, Integer> graphMapOutside = new TreeMap<>();
+        for (int i = 0; i <= 23; i++) {
+            graphMapInside.put(i, stepsInsideByHour.getOrDefault(i, 0));
+            graphMapOutside.put(i, stepsOutsideByHour.getOrDefault(i, 0));
+        }
+
+        // Create and get the cartesian coordinate system for column chart
+        Cartesian cartesian = AnyChart.column();
+
+// Prepare data entries
+        List<DataEntry> dataInside = new ArrayList<>();
+        List<DataEntry> dataOutside = new ArrayList<>();
+
+        for (int i = 0; i <= 23; i++) {
+            int insideSteps = graphMapInside.getOrDefault(i, 0);
+            int outsideSteps = graphMapOutside.getOrDefault(i, 0);
+
+            dataInside.add(new CustomDataEntry(String.valueOf(i), insideSteps));
+            dataOutside.add(new CustomDataEntry(String.valueOf(i), outsideSteps));
+        }
+
+
+// Add data to the chart and set up stacked columns
+        Column insideColumn = cartesian.column(dataInside);
+        insideColumn.name("Inside")
+                .color("#000000");
+
+
+        Column outsideColumn = cartesian.column(dataOutside);
+        outsideColumn.name("Outside")
+                .color("#777777");
+
+
+        insideColumn.tooltip()
+                .titleFormat("{%X}")
+                .format("Inside: {%Value}{groupsSeparator: } Steps");
+        outsideColumn.tooltip()
+                .titleFormat("{%X}")
+                .format("Outside: {%Value}{groupsSeparator: } Steps");
+
+        cartesian.yAxis(0).title("Number of Steps");
+        cartesian.xAxis(0).title("Hour");
+        cartesian.background().fill("#00000000");
+        cartesian.animation(true);
+
+        return cartesian;
+    }
+
+    private class CustomDataEntry extends ValueDataEntry {
+        CustomDataEntry(String x, Number value) {
+            super(x, value);
+        }
     }
     public Cartesian createInsideColumnChart(){
         //***** Read data from SQLiteDatabase *********/
@@ -260,6 +329,7 @@ public class ReportFragment extends Fragment {
 
         return cartesian;
     }
+
 
     private Bitmap generateBitmap(View view) {
         // 1. Create a bitmap with same dimensions as view

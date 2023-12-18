@@ -32,7 +32,7 @@
     <string name="delete_all_steps">Delete all steps</string>
     <string name="share">Share</string>
 
-    <string name="steps_inside_rooms">Steps inside rooms</string>
+    <string name="steps_inside_rooms">Steps</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_room">Rooms</string>
     <string name="logout">Logout</string>

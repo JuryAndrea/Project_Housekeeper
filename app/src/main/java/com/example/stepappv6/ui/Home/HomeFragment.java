@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
         stepsInsideRoom = StepAppOpenHelper.loadSingleRecordOfStepsInside(getContext(), fDate);
         stepsOutsideRoom = StepAppOpenHelper.loadSingleRecordOfStepsOutside(getContext(), fDate);
 
-        RoomFragment.roomstatus.put(6, 1);
+        RoomFragment.roomstatus.put(6, 0);
 
         // Text view & ProgressBar
         goalTextView = (TextView) root.findViewById(R.id.goal);

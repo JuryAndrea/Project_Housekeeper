@@ -179,10 +179,6 @@ public class RoomFragment extends Fragment {
         Map<Integer, Integer> roomstatuses = obj.parseJsonString(occdata);
         Log.d("SSH", roomstatuses.toString());
 
-
-
-        //TODO: Fix dropdown menu
-
         // Iterate over roomstatus map to get room we are in
         // get the AutoCompleteTextView of the current room
         // assuming 0=dirty (default), 1=cleaning, 2=cleaned
