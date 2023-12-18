@@ -49,12 +49,20 @@ public class RoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        roomstatus.put(1, 0);
-        roomstatus.put(2, 1);
-        roomstatus.put(3, 2);
-        roomstatus.put(4, 0);
-        roomstatus.put(5, 0);
-        roomstatus.put(6, 1);
+//        roomstatus.put(1, 0);
+//        roomstatus.put(2, 1);
+//        roomstatus.put(3, 2);
+//        roomstatus.put(4, 0);
+//        roomstatus.put(5, 0);
+//        roomstatus.put(6, 1);
+
+
+        dataretriever obj = new dataretriever(6);
+        Log.d("SSH", "1");
+        String occdata = obj.retrieve(getContext());
+        Log.d("SSH", "2");
+        roomstatus = obj.parseJsonString(occdata);
+
 
         binding = FragmentRoomBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -112,44 +120,14 @@ public class RoomFragment extends Fragment {
         setOnItemClickListener(autoCompleteTextView5, status_image5);
         setOnItemClickListener(autoCompleteTextView6, status_image6);
 
-
-//      HERE WE GET THE ROOM STATUS UPDATE
-        dataretriever obj = new dataretriever(6);
-        Log.d("SSH", "1");
-        String occdata = obj.retrieve(getContext());
-        Log.d("SSH", "2");
-        Map<Integer, Integer> roomstatuses = obj.parseJsonString(occdata);
-        Log.d("SSH", roomstatuses.toString());
-
-
         // Iterate over roomstatus map to get room we are in
         // get the AutoCompleteTextView of the current room
         // assuming 0=dirty (default), 1=cleaning, 2=cleaned
         for (Integer key : roomstatus.keySet()) {
-            if(roomstatus.get(key) == 1) { //Cleaning
+            if (roomstatus.get(key) == 0) { //Dirty
                 currentRoom = key;
-                AutoCompleteTextView a = AutoCompleteTextViewArray.get(currentRoom-1);
-                ImageView image = ImageArray.get(currentRoom-1);
-
-                String selectedText = cleaningStatus[1];
-                a.setText(selectedText);
-                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
-                a.setAdapter(arrayAdapter);
-
-                set_image(1, image);
-            } else if (roomstatus.get(key) == 2) { //Cleaned
-                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key-1);
-                ImageView image = ImageArray.get(key-1);
-
-                String selectedText = cleaningStatus[2];
-                a.setText(selectedText);
-                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
-                a.setAdapter(arrayAdapter);
-
-                set_image(2, image);
-            } else if (roomstatus.get(key) == 0) { //Dirty
-                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key-1);
-                ImageView image = ImageArray.get(key-1);
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
 
                 String selectedText = cleaningStatus[0];
                 a.setText(selectedText);
@@ -157,9 +135,42 @@ public class RoomFragment extends Fragment {
                 a.setAdapter(arrayAdapter);
 
                 set_image(0, image);
-            } else {
-                continue;
+
+            } else if (roomstatus.get(key) == 1) { //Cleaning
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
+
+                String selectedText = cleaningStatus[1];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
+                set_image(1, image);
+
+            } else if (roomstatus.get(key) == 2) { //Cleaned
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
+
+                String selectedText = cleaningStatus[2];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
+                set_image(2, image);
+
+            } else if (roomstatus.get(key) == 3) { //Ready
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
+
+                String selectedText = cleaningStatus[3];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
+                set_image(3, image);
+
             }
+
         }
 
         return root;
@@ -177,13 +188,16 @@ public class RoomFragment extends Fragment {
     }
 
     private void set_image(int pos, ImageView status_image){
-        if(pos == 1) {
-            status_image.setImageResource(R.drawable.cleaning_64);
-        } else if (pos == 2) {
-            status_image.setImageResource(R.drawable.cleaned_64);
-        } else {
+
+        if (pos == 0)
             status_image.setImageResource(R.drawable.dirty_50);
-        }
+        else if (pos == 1)
+            status_image.setImageResource(R.drawable.cleaning_64);
+        else if (pos == 2)
+            status_image.setImageResource(R.drawable.cleaned_64);
+        else
+            status_image.setImageResource(R.drawable.ready_50);
+
     }
 
     private void set_image_by_hand(int pos, ImageView status_image){
@@ -208,4 +222,65 @@ public class RoomFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        dataretriever obj = new dataretriever(6);
+        Log.d("SSH", "1");
+        String occdata = obj.retrieve(getContext());
+        Log.d("SSH", "2");
+        roomstatus = obj.parseJsonString(occdata);
+
+        for (Integer key : roomstatus.keySet()) {
+            if (roomstatus.get(key) == 0) { //Dirty
+                currentRoom = key;
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
+
+                String selectedText = cleaningStatus[0];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
+                set_image(0, image);
+
+            } else if (roomstatus.get(key) == 1) { //Cleaning
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
+
+                String selectedText = cleaningStatus[1];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
+                set_image(1, image);
+
+            } else if (roomstatus.get(key) == 2) { //Cleaned
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
+
+                String selectedText = cleaningStatus[2];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
+                set_image(2, image);
+
+            } else if (roomstatus.get(key) == 3) { //Ready
+                AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
+                ImageView image = ImageArray.get(key - 1);
+
+                String selectedText = cleaningStatus[3];
+                a.setText(selectedText);
+                arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, cleaningStatus);
+                a.setAdapter(arrayAdapter);
+
+                set_image(3, image);
+
+            }
+
+        }
+
+    }
 }

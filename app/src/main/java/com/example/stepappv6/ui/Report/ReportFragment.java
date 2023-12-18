@@ -48,7 +48,6 @@ public class ReportFragment extends Fragment {
 
 
     AnyChartView stepsInsideRoom;
-    AnyChartView stepsOutsideRoom;
 
     Button shareButton;
 
@@ -70,19 +69,11 @@ public class ReportFragment extends Fragment {
 
         // Create column chart for steps inside rooms
         stepsInsideRoom = root.findViewById(R.id.stepsInsideRoom);
-//        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
 
         Cartesian cartesian = createColumnChart();
-        stepsInsideRoom.setBackgroundColor("#00000000");
+        stepsInsideRoom.setBackgroundColor("#FBFDF8");
         stepsInsideRoom.setChart(cartesian);
 
-//        // Create column chart for steps outside rooms
-//        stepsOutsideRoom = root.findViewById(R.id.stepsOutsideRoom);
-////        anyChartView.setProgressBar(root.findViewById(R.id.loadingBar));
-//
-//        Cartesian cartesianOutside = createOutsideColumnChart();
-//        stepsOutsideRoom.setBackgroundColor("#00000000");
-//        stepsOutsideRoom.setChart(cartesianOutside);
 
         shareButton = root.findViewById(R.id.sharebtn);
 
@@ -91,16 +82,12 @@ public class ReportFragment extends Fragment {
             public void onClick(View view) {
                 //Create a bitmap from anychart view
                 Bitmap bitmapInside = generateBitmap(stepsInsideRoom);
-                Bitmap bitmapOutside = generateBitmap(stepsOutsideRoom);
 
                 //Save the bitmap as an image
                 saveImage(bitmapInside);
-                saveImage(bitmapOutside);
 
                 //Share the bitmap
                 share(bitmapInside);
-                share(bitmapOutside);
-
 
             }
         });
@@ -160,7 +147,7 @@ public class ReportFragment extends Fragment {
         // Create and get the cartesian coordinate system for column chart
         Cartesian cartesian = AnyChart.column();
 
-// Prepare data entries
+        // Prepare data entries
         List<DataEntry> dataInside = new ArrayList<>();
         List<DataEntry> dataOutside = new ArrayList<>();
 
@@ -173,7 +160,7 @@ public class ReportFragment extends Fragment {
         }
 
 
-// Add data to the chart and set up stacked columns
+        // Add data to the chart and set up stacked columns
         Column insideColumn = cartesian.column(dataInside);
         insideColumn.name("Inside")
                 .color("#000000");
@@ -195,6 +182,11 @@ public class ReportFragment extends Fragment {
         cartesian.xAxis(0).title("Hour");
         cartesian.background().fill("#00000000");
         cartesian.animation(true);
+
+        cartesian.legend()
+                .enabled(true) // Enable legend
+                .fontSize(12)   // Set font size
+                .padding(10, 0, 0, 0); // Set padding
 
         return cartesian;
     }
@@ -329,7 +321,6 @@ public class ReportFragment extends Fragment {
 
         return cartesian;
     }
-
 
     private Bitmap generateBitmap(View view) {
         // 1. Create a bitmap with same dimensions as view

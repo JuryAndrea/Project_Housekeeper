@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView text;
 
-
     private SharedPreferences preference;
 
     private SharedPreferences.Editor editor;
