@@ -28,16 +28,14 @@ public class dataretriever extends AppCompatActivity {
 
 
     public Map<Integer, Integer> parseJsonString(String jsonString) {
-        // Remove curly braces and split the string by commas
+
         String[] keyValuePairs = jsonString
                 .replace("{", "")
                 .replace("}", "")
                 .split(",\\s*");
 
-        // Create a Map to store key-value pairs
         Map<Integer, Integer> dictionary = new HashMap<>();
 
-        // Parse each key-value pair and add it to the dictionary
         for (String pair : keyValuePairs) {
             String[] parts = pair.split(":");
             int roomNumber = Integer.parseInt(parts[0].trim().replaceAll("\\D", ""));

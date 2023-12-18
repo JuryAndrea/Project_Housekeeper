@@ -41,7 +41,6 @@ public class SSHConnector extends AsyncTask<connetionargs, Void, Session> {
             channelSftp.connect();
             Log.d("SSH", "connect try7: ");
 
-//            // Download the file
             channelSftp.get(connetionargs[0].remoteFilePath, connetionargs[0].localDestinationPath);
             Log.d("SSH", "connect try8: ");
 
@@ -95,7 +94,6 @@ public class SSHConnector extends AsyncTask<connetionargs, Void, Session> {
                 }
             }
 
-            // Process the outputBuffer as needed
             String commandOutput = outputBuffer.toString();
             System.out.println("Command Output: " + commandOutput);
 

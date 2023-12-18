@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("JURY", "Tag: " + tagId);
 
             if (tagId.equals("1480275E")){
-                Log.d("JURY", "pluto");
+                Log.d("JURY", "inside the if statement");
 
                 editor.putBoolean("logged", true);
                 editor.apply();
