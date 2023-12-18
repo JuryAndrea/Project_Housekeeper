@@ -6,4 +6,4 @@
 - 06_profilefragment: Shows the overall progress on the rooms that have been cleaned and are to be cleaned. 
 - 07_logout: Shows the logout activity.
 - 08_raspberry_pi_change_of_room_status_room_6: Shows how the room status changes from Room Nr.6 being unoccupied (status 0) to occupied (status 1). Then the roomfragment dynamically adjust Room 6's status from dirty to cleaning.
-
+- 09_screendemo: Recording of the application screen
