@@ -28,7 +28,6 @@ public class RoomFragment extends Fragment {
 
     FragmentRoomBinding binding;
 
-    private Button status;
     private int currentRoom;
     public static Map<Integer, Integer> roomstatus = new HashMap<>();
     private ImageView status_image1;
@@ -37,7 +36,6 @@ public class RoomFragment extends Fragment {
     private ImageView status_image4;
     private ImageView status_image5;
     private ImageView status_image6;
-//    private Button logout;
     private ArrayList<AutoCompleteTextView> AutoCompleteTextViewArray;
 
     private ArrayList<ImageView> ImageArray;

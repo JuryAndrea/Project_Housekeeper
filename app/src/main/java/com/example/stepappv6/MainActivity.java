@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preference;
     private SharedPreferences.Editor editor;
 
-    private NavController navController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

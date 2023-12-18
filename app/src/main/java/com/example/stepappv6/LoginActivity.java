@@ -13,14 +13,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONObject;
 
 
 
@@ -30,22 +27,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView text;
 
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private CheckBox checkBoxLogin;
-    private String email;
-    private String password;
-
-    private JSONObject jsonObject;
 
     private SharedPreferences preference;
 
     private SharedPreferences.Editor editor;
 
     private NfcAdapter nfcAdapter;
-    PendingIntent pendingIntent;
-    private IntentFilter[] intentFiltersArray;
-    private String[][] techListsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +120,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
 
-            }
+            }else
+                Toast.makeText(this, "Not Authorized", Toast.LENGTH_SHORT).show();
         }
     }
 
