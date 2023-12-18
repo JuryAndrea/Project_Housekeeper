@@ -1,9 +1,9 @@
-- camera_fragment_demo:
-- homefragment_demo:
-- login_with_false_nfc_tag_and_correct_one:
-- logout:
-- profile_fragment_demo:
-- raspberry_pi_change_of_room_status_room_6:
-- report_fragment_demo:
-- rooms_fragment:
+- 01_login: shows the login with a false NFC tag and with a correct NFC tag. Thus, ensuring proper authentication into the app.
+- 02_homefragment: Shows the home fragment where we gather steps for when being inside and outside of the room.
+- 03_roomfragment: Shows a list of all rooms to be cleaned for a given employee. Here, each room has a status that is dynamically changed. 
+- 04_reportfragment: Shows the comparison between steps taking inside and outside of the room. 
+- 05_camerafragment: Enables damage reporting for given furniture inside the room. 
+- 06_profilefragment: Shows the overall progress on the rooms that have been cleaned and are to be cleaned. 
+- 07_logout: Shows the logout activity.
+- 08_raspberry_pi_change_of_room_status_room_6: Shows how the room status changes from Room Nr.6 being unoccupied (status 0) to occupied (status 1). Then the roomfragment dynamically adjust Room 6's status from dirty to cleaning.
 
