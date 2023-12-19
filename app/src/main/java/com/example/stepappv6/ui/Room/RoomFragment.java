@@ -29,7 +29,7 @@ public class RoomFragment extends Fragment {
     FragmentRoomBinding binding;
 
     private int currentRoom;
-    public static Map<Integer, Integer> roomstatus = new HashMap<>();
+    private Map<Integer, Integer> roomstatuses;
     private ImageView status_image1;
     private ImageView status_image2;
     private ImageView status_image3;
@@ -49,23 +49,28 @@ public class RoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        roomstatus.put(1, 0);
-//        roomstatus.put(2, 1);
-//        roomstatus.put(3, 2);
-//        roomstatus.put(4, 0);
-//        roomstatus.put(5, 0);
-//        roomstatus.put(6, 1);
-
-        // Get the data from SSH connection
-        dataretriever obj = new dataretriever(6);
-        Log.d("SSH", "1");
-        String occdata = obj.retrieve(getContext());
-        Log.d("SSH", "2");
-        roomstatus = obj.parseJsonString(occdata);
-
-
         binding = FragmentRoomBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+
+        // Get the data from SSH connection
+        // UNCOMMENT THIS TO GET THE OCCUPANCY DATA ONLY IF YOU ARE CONNECTED TO THE RASPBERRY PI
+//        dataretriever obj = new dataretriever(6);
+//        Log.d("SSH", "1");
+//        String occdata = obj.retrieve(getContext());
+//        Log.d("SSH", "2");
+//        roomstatus = new HashMap<>();
+//        roomstatus = obj.parseJsonString(occdata);
+
+        // COMMENT THIS OUT IF YOU ARE CONNECTED TO THE RASPBERRY PI
+        roomstatuses = new HashMap<>();
+        roomstatuses.put(1, 0);
+        roomstatuses.put(2, 2);
+        roomstatuses.put(3, 2);
+        roomstatuses.put(4, 0);
+        roomstatuses.put(5, 2);
+        roomstatuses.put(6, 1);
+
 
         ImageArray = new ArrayList<>();
 
@@ -122,8 +127,8 @@ public class RoomFragment extends Fragment {
 
         // Iterate over roomstatus map to get room we are in
         // get the AutoCompleteTextView of the current room
-        for (Integer key : roomstatus.keySet()) {
-            if (roomstatus.get(key) == 0) { //Dirty
+        for (Integer key : roomstatuses.keySet()) {
+            if (roomstatuses.get(key) == 0) { //Dirty
                 // Set the current room to the dirty room
                 currentRoom = key;
                 // Get the AutoCompleteTextView of the current room
@@ -142,7 +147,7 @@ public class RoomFragment extends Fragment {
                 // Set the image of the ImageView
                 set_image(0, image);
 
-            } else if (roomstatus.get(key) == 1) { //Cleaning
+            } else if (roomstatuses.get(key) == 1) { //Cleaning
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
                 ImageView image = ImageArray.get(key - 1);
 
@@ -153,7 +158,7 @@ public class RoomFragment extends Fragment {
 
                 set_image(1, image);
 
-            } else if (roomstatus.get(key) == 2) { //Cleaned
+            } else if (roomstatuses.get(key) == 2) { //Cleaned
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
                 ImageView image = ImageArray.get(key - 1);
 
@@ -164,7 +169,7 @@ public class RoomFragment extends Fragment {
 
                 set_image(2, image);
 
-            } else if (roomstatus.get(key) == 3) { //Ready
+            } else if (roomstatuses.get(key) == 3) { //Ready
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
                 ImageView image = ImageArray.get(key - 1);
 
@@ -237,14 +242,24 @@ public class RoomFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        dataretriever obj = new dataretriever(6);
-        Log.d("SSH", "1");
-        String occdata = obj.retrieve(getContext());
-        Log.d("SSH", "2");
-        roomstatus = obj.parseJsonString(occdata);
+        // UNCOMMENT THIS TO GET THE OCCUPANCY DATA ONLY IF YOU ARE CONNECTED TO THE RASPBERRY PI
+//        dataretriever obj = new dataretriever(6);
+//        Log.d("SSH", "1");
+//        String occdata = obj.retrieve(getContext());
+//        Log.d("SSH", "2");
+//        roomstatuses = obj.parseJsonString(occdata);
 
-        for (Integer key : roomstatus.keySet()) {
-            if (roomstatus.get(key) == 0) { //Dirty
+        // COMMENT THIS OUT IF YOU ARE CONNECTED TO THE RASPBERRY PI
+        roomstatuses = new HashMap<>();
+        roomstatuses.put(1, 0);
+        roomstatuses.put(2, 2);
+        roomstatuses.put(3, 2);
+        roomstatuses.put(4, 0);
+        roomstatuses.put(5, 2);
+        roomstatuses.put(6, 1);
+
+        for (Integer key : roomstatuses.keySet()) {
+            if (roomstatuses.get(key) == 0) { //Dirty
                 currentRoom = key;
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
                 ImageView image = ImageArray.get(key - 1);
@@ -256,7 +271,7 @@ public class RoomFragment extends Fragment {
 
                 set_image(0, image);
 
-            } else if (roomstatus.get(key) == 1) { //Cleaning
+            } else if (roomstatuses.get(key) == 1) { //Cleaning
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
                 ImageView image = ImageArray.get(key - 1);
 
@@ -267,7 +282,7 @@ public class RoomFragment extends Fragment {
 
                 set_image(1, image);
 
-            } else if (roomstatus.get(key) == 2) { //Cleaned
+            } else if (roomstatuses.get(key) == 2) { //Cleaned
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
                 ImageView image = ImageArray.get(key - 1);
 
@@ -278,7 +293,7 @@ public class RoomFragment extends Fragment {
 
                 set_image(2, image);
 
-            } else if (roomstatus.get(key) == 3) { //Ready
+            } else if (roomstatuses.get(key) == 3) { //Ready
                 AutoCompleteTextView a = AutoCompleteTextViewArray.get(key - 1);
                 ImageView image = ImageArray.get(key - 1);
 

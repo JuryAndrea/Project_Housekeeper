@@ -19,6 +19,7 @@ import com.example.stepappv6.R;
 import com.example.stepappv6.databinding.FragmentProfileBinding;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,8 @@ public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
 
     private TextView textViewGoal;
+
+    private Map<Integer, Integer> roomstatuses;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -59,11 +62,22 @@ public class ProfileFragment extends Fragment {
                 .stroke();
 
         // Retrieve data from the SSH connection
-        dataretriever obj = new dataretriever(6);
-        Log.d("SSH", "1");
-        String occdata = obj.retrieve(getContext());
-        Log.d("SSH", "2");
-        Map<Integer, Integer> roomstatuses = obj.parseJsonString(occdata);
+        // UNCOMMENT THIS TO GET THE OCCUPANCY DATA ONLY IF YOU ARE CONNECTED TO THE RASPBERRY PI
+//        dataretriever obj = new dataretriever(6);
+//        Log.d("SSH", "1");
+//        String occdata = obj.retrieve(getContext());
+//        Log.d("SSH", "2");
+//        roomstatuses = new HashMap<>();
+//        roomstatuses = obj.parseJsonString(occdata);
+
+        // COMMENT THIS OUT IF YOU ARE CONNECTED TO THE RASPBERRY PI
+        roomstatuses = new HashMap<>();
+        roomstatuses.put(1, 0);
+        roomstatuses.put(2, 2);
+        roomstatuses.put(3, 2);
+        roomstatuses.put(4, 0);
+        roomstatuses.put(5, 2);
+        roomstatuses.put(6, 1);
 
         // Count the number of rooms in each state
         int dirty = 0;

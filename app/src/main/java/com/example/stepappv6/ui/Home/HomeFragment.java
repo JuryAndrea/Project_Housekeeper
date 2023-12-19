@@ -29,6 +29,7 @@ import androidx.fragment.app.Fragment;
 import com.example.stepappv6.MainActivity;
 import com.example.stepappv6.R;
 import com.example.stepappv6.StepAppOpenHelper;
+import com.example.stepappv6.databinding.FragmentHomeBinding;
 import com.example.stepappv6.ui.Room.RoomFragment;
 
 import java.text.SimpleDateFormat;
@@ -50,7 +51,7 @@ public class HomeFragment extends Fragment {
     public TextView stepsCountTextView;
     public TextView stepsInsideRoomTextView;
 
-    public static Map<Integer, Integer> roomstatus;
+    public static Map<Integer, Integer> roomstatuses;;
     public TextView stepsOutsideRoomTextView;
     public ProgressBar stepsCountProgressBar;
     public TextView goalTextView;
@@ -75,18 +76,34 @@ public class HomeFragment extends Fragment {
     // Create a variable to store the NotificationManager object
     public static NotificationManager mNotifyManager;
 
+    private FragmentHomeBinding binding;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        dataretriever obj = new dataretriever(6);
-        Log.d("SSH", "1");
-        String occdata = obj.retrieve(getContext());
-        Log.d("SSH", "2");
-        roomstatus = new HashMap<>();
-        roomstatus = obj.parseJsonString(occdata);
+//        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        // UNCOMMENT THIS TO GET THE OCCUPANCY DATA ONLY IF YOU ARE CONNECTED TO THE RASPBERRY PI
+//        dataretriever obj = new dataretriever(6);
+//        Log.d("SSH", "1");
+//        String occdata = obj.retrieve(getContext());
+//        Log.d("SSH", "2");
+//        roomstatuses = new HashMap<>();
+//        roomstatuses = obj.parseJsonString(occdata);
+
+        // COMMENT THIS OUT IF YOU ARE CONNECTED TO THE RASPBERRY PI
+        roomstatuses = new HashMap<>();
+        roomstatuses.put(1, 0);
+        roomstatuses.put(2, 2);
+        roomstatuses.put(3, 2);
+        roomstatuses.put(4, 0);
+        roomstatuses.put(5, 2);
+        roomstatuses.put(6, 1);
+
 
         // Get the number of steps stored in the current date
         Date cDate = new Date();
@@ -354,7 +371,7 @@ class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
 
                     // Update the number of steps
                     mACCStepCounter += 1;
-                    if(HomeFragment.roomstatus.get(6) == 1){
+                    if(HomeFragment.roomstatuses.get(6) == 1){
                         mACCStepsInsideCounter += 1;
                     }
                     else{
@@ -378,7 +395,7 @@ class StepCounterListener<totalStepsCompleted> implements SensorEventListener {
                     values.put(StepAppOpenHelper.KEY_TIMESTAMP, timePointList.get(i));
                     values.put(StepAppOpenHelper.KEY_DAY, day);
                     values.put(StepAppOpenHelper.KEY_HOUR, hour);
-                    if(HomeFragment.roomstatus.get(6) == 1){
+                    if(HomeFragment.roomstatuses.get(6) == 1){
                         values.put(StepAppOpenHelper.KEY_INSIDE, 1);
                         Log.d("StepCounterListener", "Step recorded as inside");
                     } else {
