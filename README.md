@@ -37,3 +37,6 @@ PLEASE, FOR DEMO REFER TO THE VIDEO FOLDER.
 - ProfileFragment: Shows the pie chart of the overall progress of an employee. 
 - Logout button: Logs the employee out. 
 
+## Changed
+I fixed the bug in HomeFragment that did not allow the live demo. The problem was concern a wrong setting of the layout. 
+Moreover, since I did not have the Rasberry Pi and the NFC sensor, I hard-coded the json file with the status of the rooms for testing purpose.
